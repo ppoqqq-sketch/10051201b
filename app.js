@@ -11,7 +11,7 @@
   'use strict';
 
   const PREVIEW_LIMIT = 60; // 60 seconds preview
-  const SECURE_EMAIL_B64 = 'MTAwNTEyMDFiQGdtYWlsLmNvbQ=='; // 10051201b@gmail.com
+  const SECURE_EMAIL_B64 = 'bGljZW5zZTAwMTlAZ21haWwuY29t'; // license0019@gmail.com
 
   // State Management
   const state = {
@@ -76,10 +76,9 @@
       story_sig_music: 'Total Producer (with Gemini Flash · Argon · SUNO)',
       story_p_badge: 'PHOTOGRAPHY STORY 📸',
       photo_story_title: '"빛이 스며드는 순간을 기록합니다"',
-      photo_story_p1: '도시의 가장자리에서,<br>물 위에 흔들리는 반사 속에서,<br>조용히 머무는 아침 공기 사이에서<br>저는 잠시 멈추어 바라봅니다.',
-      photo_story_p2: '이 공간은 일상의 작은 빛을 모아두는 아카이브입니다.',
-      photo_story_p3: '어떤 사진은 판매를 위해 남겨지고, 어떤 작업은 실험으로 기록됩니다.',
-      photo_story_p4: '그리고 모든 기록의 중심에는 <strong>‘조용한 순간’</strong>이 있습니다.',
+      photo_story_p1: '가장 사랑했던 사람이 더 이상 이 세상에 없다는 것을 마주했던 날, 세상의 모든 빛이 일순간 꺼져버린 것만 같았습니다.<br>그 감당하기 힘든 상실과 시린 슬픔을 가슴에 품은 채, 저는 카메라 한 대를 메고 2년이라는 긴 시간 동안 전국을 홀로 떠돌았습니다.',
+      photo_story_p2: '도시의 가장자리에서, 물 위에 흔들리는 반사 속에서, 이른 새벽 조용히 머무는 아침 공기 사이에서 멈추어 서서 셔터를 눌렀습니다.<br>어떤 사진은 치열한 실험으로 남겨졌고, 어떤 작업은 세상과의 연결을 위해 기록되었습니다.<br>끝없는 방황 속에서 렌즈 너머로 마주한 것은, 칠흑 같은 어둠 속에서도 묵묵히 스며드는 작은 빛의 조각들이었습니다.',
+      photo_story_p3: '이 사진들은 단순한 풍경이 아닌, 부서진 마음을 부여잡고 가장 아프고 힘겨웠던 시간을 묵묵히 버텨내고 이겨낸 치유의 기록입니다.<br>모든 기록의 중심에는 <strong>‘조용한 순간’</strong>이 머물러 있습니다.<br>어둠을 지나온 이 따스한 빛들이, 지금 저마다의 외로운 계절을 지나고 있을 당신에게도 조용한 위로가 되기를 바랍니다.',
       story_sig_photo: 'Fine Art Photographer',
       footer_contact: 'Contact (문의)',
       btn_lyrics: '가사',
@@ -141,10 +140,9 @@
       story_sig_music: 'Total Producer (with Gemini Flash · Argon · SUNO)',
       story_p_badge: 'PHOTOGRAPHY STORY 📸',
       photo_story_title: '"Recording Moments Where Light Gently Seeps In"',
-      photo_story_p1: 'At the edge of the city,<br>in ripples reflecting on the water,<br>amidst the quiet morning air that lingers,<br>I pause and observe.',
-      photo_story_p2: 'This space is an archive gathering the subtle light of everyday life.',
-      photo_story_p3: 'Some photographs are preserved for sale, while other works are recorded as experiments.',
-      photo_story_p4: 'And at the heart of every single record lies a <strong>\'quiet moment\'</strong>.',
+      photo_story_p1: 'On the day I faced the reality that the person I loved most was no longer in this world, it felt as though all the light in the universe had gone dark.<br>Carrying that unbearable weight of grief and solitary ache in my heart, I picked up a camera and spent two long years wandering alone across the entire country.',
+      photo_story_p2: 'At the edge of distant cities, in trembling reflections upon quiet waters, and amidst the still dawn air, I paused and pressed the shutter.<br>Some works were captured as raw artistic experiments, while others were preserved to reconnect with the world.<br>What I met through the lens during those solitary wanderings were gentle fragments of light seeping silently through the deepest shadows.',
+      photo_story_p3: 'These photographs are not merely landscapes; they are an intimate record of endurance and healing, holding together a shattered heart through the hardest chapter of life.<br>At the center of every frame lies a <strong>\'quiet moment\'</strong>.<br>May the light that carried me through the dark bring gentle solace to anyone currently walking through their own cold season.',
       story_sig_photo: 'Fine Art Photographer',
       footer_contact: 'Contact Artist',
       btn_lyrics: 'Lyrics',
