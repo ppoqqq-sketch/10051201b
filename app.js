@@ -38,6 +38,11 @@
       nav_blogs: '블로그',
       nav_story: '스토리',
       nav_contact: '문의하기',
+      nav_saatchi: '🎨 작품 소장 (Saatchi Art)',
+      saatchi_badge: 'FINE ART COLLECTION ON SAATCHI ART',
+      saatchi_title: '은하(Inje Cho)의 오리지널 사진 작품 소장하기',
+      saatchi_desc: '세계적인 온라인 파인아트 갤러리 <strong>Saatchi Art(사치아트)</strong>에서 엄선된 원본 사진 작품과 고해상도 리미티드 에디션 아트 프린트를 감상하고 공식 소장하실 수 있습니다.',
+      saatchi_btn: 'Saatchi Art 갤러리 방문하기',
       hero_badge: 'OFFICIAL ARTIST ARCHIVE',
       hero_title: '삶의 쉼표가 되는 <span>36편의 노래</span>',
       hero_desc: '1년 6개월 동안 축적된 삶의 고뇌와 시(詩) 같은 언어들이 선율을 입었습니다.<br>곡 하나하나에 담긴 온기를 한 곡씩 집중해서 감상해 보세요.',
@@ -102,6 +107,11 @@
       nav_blogs: 'Blogs',
       nav_story: 'Story',
       nav_contact: 'Contact',
+      nav_saatchi: '🎨 Artworks (Saatchi Art)',
+      saatchi_badge: 'FINE ART COLLECTION ON SAATCHI ART',
+      saatchi_title: 'Collect Original Fine Art Prints by Inje Cho',
+      saatchi_desc: 'Explore and acquire curated original photography and high-resolution limited edition fine art prints exclusively on the world-renowned gallery <strong>Saatchi Art</strong>.',
+      saatchi_btn: 'Visit Saatchi Art Gallery',
       hero_badge: 'OFFICIAL ARTIST ARCHIVE',
       hero_title: 'Restful Moments Through <span>36 Original Tracks</span>',
       hero_desc: 'One and a half years of quiet reflection and poetic contemplation transformed into soothing melodies.<br>Explore each track one by one with heartfelt warmth.',
@@ -249,7 +259,8 @@
     btnOpenNaverMail: document.getElementById('btnOpenNaverMail'),
     btnResetContact: document.getElementById('btnResetContact'),
 
-    // Secret Lore Modal
+    // Secret Lore Modal (Easter Egg)
+    brandSub: document.getElementById('brandSub'),
     secretLoreModal: document.getElementById('secretLoreModal'),
     secretLoreBackdrop: document.getElementById('secretLoreBackdrop'),
     btnCloseSecretLore: document.getElementById('btnCloseSecretLore'),
@@ -827,7 +838,19 @@
       el.spotCover.addEventListener('click', togglePlay);
     }
 
-    // Secret Lore Modal Event Listeners
+    // Secret Lore Modal Event Listeners (Hidden Easter Egg on 'i\'m cho')
+    if (el.brandSub) {
+      el.brandSub.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSecretLoreModal();
+      });
+      el.brandSub.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openSecretLoreModal();
+        }
+      });
+    }
     if (el.btnOpenSecretLore) el.btnOpenSecretLore.addEventListener('click', openSecretLoreModal);
     if (el.btnFooterSecretLore) el.btnFooterSecretLore.addEventListener('click', openSecretLoreModal);
     if (el.btnCloseSecretLore) el.btnCloseSecretLore.addEventListener('click', closeSecretLoreModal);

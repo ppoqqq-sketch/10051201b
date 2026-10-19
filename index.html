@@ -25,7 +25,7 @@
         <span class="brand-logo">♪</span>
         <div class="brand-text">
           <h1 class="brand-name">10051201b</h1>
-          <span class="brand-sub">i'm cho</span>
+          <span class="brand-sub secret-trigger" id="brandSub" title="i'm cho" tabindex="0" role="button">i'm cho</span>
         </div>
       </div>
       <nav class="header-nav">
@@ -34,7 +34,7 @@
         <a href="#blogs" class="nav-link" data-i18n="nav_blogs">블로그</a>
         <a href="#story" class="nav-link" data-i18n="nav_story">스토리</a>
         <button id="btnOpenContact" class="nav-link btn-link" data-i18n="nav_contact">문의하기</button>
-        <button id="btnOpenSecretLore" class="btn-secret-nav" title="비밀 문서 (Secret Lore)">🔐 비밀문서</button>
+        <a href="https://www.saatchiart.com/en-kr/injecho" target="_blank" rel="noopener" class="btn-saatchi-nav" title="Saatchi Art 작품 소장 / Artworks" data-i18n="nav_saatchi">🎨 작품 소장 (Saatchi Art)</a>
 
         <!-- Language Toggle Button -->
         <button id="btnLangToggle" class="btn-lang-toggle" title="언어 변경 / Switch Language">
@@ -43,6 +43,9 @@
         </button>
 
         <div class="external-links">
+          <a href="https://www.saatchiart.com/en-kr/injecho" target="_blank" rel="noopener" class="btn-ext btn-saatchi" title="Saatchi Art에서 작품 감상 및 소장">
+            <span>Saatchi Art</span>
+          </a>
           <a href="https://open.spotify.com/search/10051201b" target="_blank" rel="noopener" class="btn-ext btn-spotify" title="Spotify에서 듣기">
             <svg viewBox="0 0 24 24" class="svg-icon"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 5.524 4.477 10 10 10s10-4.476 10-10c0-5.523-4.477-10-10-10zm4.586 14.424c-.18.295-.563.387-.857.207-2.35-1.435-5.308-1.76-8.792-.963-.335.077-.67-.133-.746-.469-.077-.334.132-.67.467-.747 3.808-.871 7.076-.496 9.721 1.121.294.18.386.564.207.851zm1.226-2.73c-.227.37-.714.487-1.084.26-2.69-1.654-6.79-2.134-9.972-1.168-.415.126-.856-.11-1.002-.524-.146-.415.11-.856.525-1.002 3.633-1.103 8.147-.568 11.273 1.35.37.228.486.714.26 1.084zm.106-2.836C14.693 8.95 9.375 8.775 6.297 9.71c-.496.15-1.022-.134-1.173-.63-.15-.496.134-1.022.63-1.173 3.532-1.072 9.404-.866 13.115 1.338.446.265.592.845.327 1.291-.265.446-.845.592-1.29.327z"/></svg>
             <span>Spotify</span>
@@ -193,6 +196,22 @@
       <div class="photo-gallery-grid" id="photoGalleryGrid">
         <!-- Rendered via JS from data/photos.json -->
       </div>
+
+      <!-- Saatchi Art Direct Acquisition Banner Card -->
+      <div class="saatchi-cta-card">
+        <div class="saatchi-cta-inner">
+          <div class="saatchi-badge" data-i18n="saatchi_badge">FINE ART COLLECTION ON SAATCHI ART</div>
+          <h4 class="saatchi-title" data-i18n="saatchi_title">은하(Inje Cho)의 오리지널 사진 작품 소장하기</h4>
+          <p class="saatchi-desc" data-i18n="saatchi_desc">
+            세계적인 온라인 파인아트 갤러리 <strong>Saatchi Art(사치아트)</strong>에서 엄선된 원본 사진 작품과 고해상도 리미티드 에디션 아트 프린트를 감상하고 공식 소장하실 수 있습니다.
+          </p>
+          <div class="saatchi-actions">
+            <a href="https://www.saatchiart.com/en-kr/injecho" target="_blank" rel="noopener" class="btn-saatchi-primary">
+              <span data-i18n="saatchi_btn">Saatchi Art 갤러리 방문하기</span> ↗
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Photo Blogs Direct Links Section -->
@@ -313,7 +332,7 @@
         <div class="footer-right">
           <button id="btnFooterContact" class="btn-footer-link" data-i18n="footer_contact">Contact (문의)</button>
           <span class="f-dot">•</span>
-          <button id="btnFooterSecretLore" class="btn-footer-link secret-link" title="비밀문서 읽어보기">🔐 비밀문서 (Secret Lore)</button>
+          <a href="https://www.saatchiart.com/en-kr/injecho" target="_blank" rel="noopener">Saatchi Art</a>
           <span class="f-dot">•</span>
           <a href="https://blog.naver.com/dailylight369" target="_blank" rel="noopener">Naver Blog</a>
           <span class="f-dot">•</span>
@@ -639,6 +658,6 @@
   <!-- Hidden native Audio element -->
   <audio id="audioElement" preload="metadata"></audio>
 
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

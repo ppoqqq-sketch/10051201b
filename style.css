@@ -1500,3 +1500,129 @@ body {
   
   .lyrics-card, .contact-card { width: 95%; max-height: 90vh; border-radius: 20px 20px 0 0; }
 }
+
+/* ==========================================================================
+   Easter Egg & Saatchi Art Styles
+   ========================================================================== */
+.brand-sub.secret-trigger {
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-block;
+  user-select: none;
+}
+.brand-sub.secret-trigger:hover {
+  color: #f6e05e !important;
+  text-shadow: 0 0 10px rgba(246, 224, 94, 0.6);
+  transform: scale(1.06);
+}
+
+.btn-saatchi-nav {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f3f4f6 !important;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  font-size: 12.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-saatchi-nav:hover {
+  background: #fff;
+  color: #0b0f19 !important;
+  border-color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+}
+
+.btn-saatchi {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #f3f4f6 !important;
+}
+.btn-saatchi:hover {
+  background: #fff;
+  color: #000 !important;
+  border-color: #fff;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
+}
+
+.saatchi-cta-card {
+  margin-top: 36px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(18, 24, 38, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.saatchi-cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent);
+}
+.saatchi-cta-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.saatchi-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #f6e05e;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.saatchi-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.4;
+}
+.saatchi-desc {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin: 0;
+}
+.saatchi-desc strong {
+  color: #e5e7eb;
+}
+.saatchi-actions {
+  margin-top: 10px;
+}
+.btn-saatchi-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #d4af37 0%, #b8972e 100%);
+  color: #0b0f19 !important;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+}
+.btn-saatchi-primary:hover {
+  background: linear-gradient(135deg, #f6e05e 0%, #d4af37 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.5);
+}
