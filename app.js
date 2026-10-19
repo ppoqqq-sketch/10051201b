@@ -65,26 +65,37 @@
       google_desc: 'An English photo diary capturing quiet landscapes, silent moments, and reflections.<br>Visual essays crafted in parallel with musical journeys.',
       btn_visit_naver: '네이버 블로그 방문하기',
       btn_visit_google: 'Visit English Blog (dailylight369.blogspot.com)',
-      story_badge: 'CREATIVE STORY',
+      story_section_badge: 'CREATIVE STORIES',
+      story_section_title: '음악과 사진, 기록의 이야기',
+      story_section_sub: "10051201b - i'm cho의 창작 세계와 시선",
+      story_m_badge: 'MUSIC STORY 🎵',
       story_title: '"1년 6개월의 시간이 음악이 되기까지"',
       story_p1: '처음부터 음원을 발매하겠다고 마음먹고 시작한 작업은 아니었습니다.<br>각자의 자리에서 삶을 버텨내며 적어 내려갔던 1년 6개월간의 고뇌와 관찰, 사람의 온기를 담은 글귀들이 차곡차곡 쌓여 있었습니다.',
       story_p2: '시끄럽고 자극적인 소리들로 넘쳐나는 세상 속에서, 언제 틀어도 귀가 피곤하지 않고 마음 한구석에 가만히 온기를 지펴줄 수 있는 노래가 절실했습니다.',
       story_p3: '<strong>"내가 평생 곁에 두고 듣고 싶은 음악"</strong>을 향한 집념이 결국 36편의 오리지널 앨범으로 피어났고, 오늘날 전 세계 리스너들과 나누는 쉼터가 되었습니다.<br>잠시 쉬어가세요. 당신의 모든 시간은 그 자체로 빛이 납니다.',
-      story_sig: 'Total Producer & Creator',
+      story_sig_music: 'Music Producer & Songwriter',
+      story_p_badge: 'PHOTOGRAPHY STORY 📸',
+      photo_story_title: '"빛이 스며드는 순간을 기록합니다"',
+      photo_story_p1: '도시의 가장자리에서,<br>물 위에 흔들리는 반사 속에서,<br>조용히 머무는 아침 공기 사이에서<br>저는 잠시 멈추어 바라봅니다.',
+      photo_story_p2: '이 공간은 일상의 작은 빛을 모아두는 아카이브입니다.',
+      photo_story_p3: '어떤 사진은 판매를 위해 남겨지고, 어떤 작업은 실험으로 기록됩니다.',
+      photo_story_p4: '그리고 모든 기록의 중심에는 <strong>‘조용한 순간’</strong>이 있습니다.',
+      story_sig_photo: 'Fine Art Photographer',
       footer_contact: 'Contact (문의)',
       btn_lyrics: '가사',
       pend_title: '1분 미리듣기가 완료되었습니다',
       pend_desc: '이 곡의 전곡 고음질 감상 및 스트리밍은 전 세계 공식 플랫폼에서 무료로 즐기실 수 있습니다.',
       btn_close: '닫기',
       contact_title: '아티스트에게 메시지 보내기',
-      contact_sub: 'Direct Message to 10051201b-i'm cho',
+      contact_sub: "Direct Message to 10051201b-i'm cho",
       contact_notice: '스팸 수집 방지를 위해 이메일 주소를 직접 노출하지 않고 안전하게 메시지를 전달합니다.',
       f_name: '보내시는 분 성함 / 닉네임',
       f_reply: '답장받으실 연락처 (이메일)',
       f_msg: '메시지 내용',
       btn_send_msg: '메시지 전송하기',
-      msg_sent: '이메일 클라이언트가 안전하게 연결되었습니다!',
-      msg_sent_sub: '작성하신 내용이 아티스트 전용 메일로 안전하게 발송됩니다.'
+      direct_label: '또는 이메일 직접 복사:',
+      msg_sent: '이메일 전송 준비가 완료되었습니다!',
+      msg_sent_sub: '메일 프로그램이 자동으로 열리지 않는 경우, 아래 웹메일 버튼을 누르시면 작성하신 내용 그대로 전송창이 열립니다.'
     },
     en: {
       lang_btn: '한국어',
@@ -121,26 +132,37 @@
       google_desc: 'An English photo diary capturing quiet landscapes, silent moments, and reflections.<br>Visual essays crafted in parallel with musical journeys.',
       btn_visit_naver: 'Visit Naver Photo Blog',
       btn_visit_google: 'Visit English Blog (dailylight369.blogspot.com)',
-      story_badge: 'CREATIVE STORY',
+      story_section_badge: 'CREATIVE STORIES',
+      story_section_title: 'Chronicles of Sound & Light',
+      story_section_sub: "The creative journey and vision of 10051201b - i'm cho",
+      story_m_badge: 'MUSIC STORY 🎵',
       story_title: '"How 1.5 Years of Solitude Became Music"',
       story_p1: 'This journey did not begin with commercial ambitions.<br>It started as an accumulated chronicle of solitary thoughts, observation of people, and human warmth written over 18 quiet months.',
       story_p2: 'In an era overwhelmed by high-stimulus, fatigue-inducing noise, we yearned for songs that never wear out the ears, gently rekindling warmth in quiet corners of the heart.',
       story_p3: '<strong>"Music I want to keep beside me for a lifetime."</strong><br>That single conviction bloomed into 36 original recordings, now shared as a sanctuary for listeners worldwide.<br>Rest here a while. Every moment of yours shines with purpose.',
-      story_sig: 'Total Producer & Creator',
+      story_sig_music: 'Music Producer & Songwriter',
+      story_p_badge: 'PHOTOGRAPHY STORY 📸',
+      photo_story_title: '"Recording Moments Where Light Gently Seeps In"',
+      photo_story_p1: 'At the edge of the city,<br>in ripples reflecting on the water,<br>amidst the quiet morning air that lingers,<br>I pause and observe.',
+      photo_story_p2: 'This space is an archive gathering the subtle light of everyday life.',
+      photo_story_p3: 'Some photographs are preserved for sale, while other works are recorded as experiments.',
+      photo_story_p4: 'And at the heart of every single record lies a <strong>\'quiet moment\'</strong>.',
+      story_sig_photo: 'Fine Art Photographer',
       footer_contact: 'Contact Artist',
       btn_lyrics: 'Lyrics',
       pend_title: '60-Second Preview Completed',
       pend_desc: 'Listen to the full lossless track for free on global official streaming platforms.',
       btn_close: 'Close',
       contact_title: 'Send a Message to Artist',
-      contact_sub: 'Direct Message to 10051201b-i'm cho',
+      contact_sub: "Direct Message to 10051201b-i'm cho",
       contact_notice: 'Email is cryptographically protected to prevent scraper bots while routing your note directly.',
       f_name: 'Your Name / Nickname',
       f_reply: 'Reply Email Address',
       f_msg: 'Message Content',
       btn_send_msg: 'Dispatch Message',
+      direct_label: 'Or copy direct email:',
       msg_sent: 'Email Dispatch Initialized!',
-      msg_sent_sub: 'Your message has been securely pre-filled and routed to the artist.'
+      msg_sent_sub: 'If your mail app did not open automatically, click the webmail buttons below to open directly.'
     }
   };
 
@@ -152,7 +174,6 @@
     langLabel: document.getElementById('langLabel'),
     heroTitle: document.getElementById('heroTitle'),
     heroDesc: document.getElementById('heroDesc'),
-    storyContent: document.getElementById('storyContent'),
     tabBtns: document.querySelectorAll('.tab-btn'),
 
     // Spotlight Elements
@@ -232,7 +253,12 @@
     contactName: document.getElementById('contactName'),
     contactReply: document.getElementById('contactReply'),
     contactMsg: document.getElementById('contactMsg'),
-    contactSuccessMsg: document.getElementById('contactSuccessMsg')
+    contactSuccessMsg: document.getElementById('contactSuccessMsg'),
+    btnCopyEmail: document.getElementById('btnCopyEmail'),
+    copyEmailText: document.getElementById('copyEmailText'),
+    btnOpenGmail: document.getElementById('btnOpenGmail'),
+    btnOpenNaverMail: document.getElementById('btnOpenNaverMail'),
+    btnResetContact: document.getElementById('btnResetContact')
   };
 
   state.audio = el.audio;
@@ -298,7 +324,6 @@
 
     el.heroTitle.innerHTML = t.hero_title;
     el.heroDesc.innerHTML = t.hero_desc;
-    el.storyContent.innerHTML = `<p>${t.story_p1}</p><p>${t.story_p2}</p><p>${t.story_p3}</p>`;
 
     updateSpotlightDisplay();
     renderTrackThumbStrip();
@@ -569,10 +594,25 @@
     const msg = el.contactMsg.value.trim();
 
     const recipient = atob(SECURE_EMAIL_B64);
-    const subject = encodeURIComponent(`[10051201b 아티스트 웹사이트 문의] ${name}님으로부터`);
-    const body = encodeURIComponent(`보내신 분: ${name}\n답장받을 이메일: ${reply}\n\n[문의 내용]\n${msg}\n\n---\n10051201b Official Archive Dispatch`);
+    const subjectRaw = `[10051201b 아티스트 웹사이트 문의] ${name}님으로부터`;
+    const bodyRaw = `보내신 분: ${name}\n답장받을 이메일: ${reply}\n\n[문의 내용]\n${msg}\n\n---\n10051201b Official Archive Dispatch`;
 
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    const subject = encodeURIComponent(subjectRaw);
+    const body = encodeURIComponent(bodyRaw);
+
+    if (el.btnOpenGmail) {
+      el.btnOpenGmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${body}`;
+    }
+    if (el.btnOpenNaverMail) {
+      el.btnOpenNaverMail.href = `https://mail.naver.com/v2/write?to=${recipient}&subject=${subject}&body=${body}`;
+    }
+
+    try {
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    } catch (err) {
+      console.warn('Mailto dispatch error:', err);
+    }
+
     el.contactForm.style.display = 'none';
     el.contactSuccessMsg.style.display = 'block';
   }
@@ -755,6 +795,35 @@
     el.btnCloseContact.addEventListener('click', closeContactModal);
     el.contactBackdrop.addEventListener('click', closeContactModal);
     el.contactForm.addEventListener('submit', handleContactSubmit);
+
+    if (el.btnCopyEmail) {
+      el.btnCopyEmail.addEventListener('click', () => {
+        const email = atob(SECURE_EMAIL_B64);
+        navigator.clipboard.writeText(email).then(() => {
+          if (el.copyEmailText) {
+            const original = el.copyEmailText.textContent;
+            el.copyEmailText.textContent = state.currentLang === 'en' ? '✓ Copied!' : '✓ 복사되었습니다!';
+            setTimeout(() => {
+              el.copyEmailText.textContent = original;
+            }, 2500);
+          }
+        }).catch(() => {
+          prompt('이메일 주소 복사:', atob(SECURE_EMAIL_B64));
+        });
+      });
+    }
+
+    if (el.btnResetContact) {
+      el.btnResetContact.addEventListener('click', () => {
+        el.contactSuccessMsg.style.display = 'none';
+        el.contactForm.style.display = 'flex';
+      });
+    }
+
+    if (el.spotCover) {
+      el.spotCover.style.cursor = 'pointer';
+      el.spotCover.addEventListener('click', togglePlay);
+    }
 
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {

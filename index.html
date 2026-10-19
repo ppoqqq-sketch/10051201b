@@ -241,29 +241,65 @@
       </div>
     </section>
 
-    <!-- Artist Story Section -->
+    <!-- Artist Story Section (음악 이야기 & 사진 이야기 2개 챕터 구성) -->
     <section id="story" class="story-section">
-      <div class="story-card">
-        <div class="story-badge" data-i18n="story_badge">CREATIVE STORY</div>
-        <h3 class="story-title" data-i18n="story_title">"1년 6개월의 시간이 음악이 되기까지"</h3>
-        <div class="story-content" id="storyContent">
-          <p>
-            처음부터 음원을 발매하겠다고 마음먹고 시작한 작업은 아니었습니다.<br>
-            각자의 자리에서 삶을 버텨내며 적어 내려갔던 1년 6개월간의 고뇌와 관찰, 사람의 온기를 담은 글귀들이 차곡차곡 쌓여 있었습니다.
-          </p>
-          <p>
-            시끄럽고 자극적인 소리들로 넘쳐나는 세상 속에서, 언제 틀어도 귀가 피곤하지 않고 
-            마음 한구석에 가만히 온기를 지펴줄 수 있는 노래가 절실했습니다.
-          </p>
-          <p>
-            <strong>"내가 평생 곁에 두고 듣고 싶은 음악"</strong>을 향한 집념이 
-            결국 36편의 오리지널 앨범으로 피어났고, 오늘날 전 세계 리스너들과 나누는 쉼터가 되었습니다.<br>
-            잠시 쉬어가세요. 당신의 모든 시간은 그 자체로 빛이 납니다.
-          </p>
+      <div class="section-title-wrap text-center mb-30">
+        <div class="section-badge" data-i18n="story_section_badge">CREATIVE STORIES</div>
+        <h3 class="section-title" data-i18n="story_section_title">음악과 사진, 기록의 이야기</h3>
+        <span class="section-subtitle" data-i18n="story_section_sub">10051201b - i'm cho의 창작 세계와 시선</span>
+      </div>
+
+      <div class="story-grid">
+        <!-- Story Card 1: Music Story (음악 이야기) -->
+        <div class="story-card">
+          <div class="story-badge" data-i18n="story_m_badge">MUSIC STORY 🎵</div>
+          <h3 class="story-title" data-i18n="story_title">"1년 6개월의 시간이 음악이 되기까지"</h3>
+          <div class="story-content" id="storyContentMusic">
+            <p data-i18n="story_p1">
+              처음부터 음원을 발매하겠다고 마음먹고 시작한 작업은 아니었습니다.<br>
+              각자의 자리에서 삶을 버텨내며 적어 내려갔던 1년 6개월간의 고뇌와 관찰, 사람의 온기를 담은 글귀들이 차곡차곡 쌓여 있었습니다.
+            </p>
+            <p data-i18n="story_p2">
+              시끄럽고 자극적인 소리들로 넘쳐나는 세상 속에서, 언제 틀어도 귀가 피곤하지 않고 
+              마음 한구석에 가만히 온기를 지펴줄 수 있는 노래가 절실했습니다.
+            </p>
+            <p data-i18n="story_p3">
+              <strong>"내가 평생 곁에 두고 듣고 싶은 음악"</strong>을 향한 집념이 
+              결국 36편의 오리지널 앨범으로 피어났고, 오늘날 전 세계 리스너들과 나누는 쉼터가 되었습니다.<br>
+              잠시 쉬어가세요. 당신의 모든 시간은 그 자체로 빛이 납니다.
+            </p>
+          </div>
+          <div class="story-signature">
+            <div class="sig-name">10051201b - i'm cho</div>
+            <div class="sig-sub" data-i18n="story_sig_music">Music Producer & Songwriter</div>
+          </div>
         </div>
-        <div class="story-signature">
-          <div class="sig-name">10051201b - i'm cho</div>
-          <div class="sig-sub" data-i18n="story_sig">Total Producer & Creator</div>
+
+        <!-- Story Card 2: Photography Story (사진 이야기) -->
+        <div class="story-card story-card-photo">
+          <div class="story-badge story-badge-photo" data-i18n="story_p_badge">PHOTOGRAPHY STORY 📸</div>
+          <h3 class="story-title" data-i18n="photo_story_title">"빛이 스며드는 순간을 기록합니다"</h3>
+          <div class="story-content" id="storyContentPhoto">
+            <p data-i18n="photo_story_p1">
+              도시의 가장자리에서,<br>
+              물 위에 흔들리는 반사 속에서,<br>
+              조용히 머무는 아침 공기 사이에서<br>
+              저는 잠시 멈추어 바라봅니다.
+            </p>
+            <p data-i18n="photo_story_p2">
+              이 공간은 일상의 작은 빛을 모아두는 아카이브입니다.
+            </p>
+            <p data-i18n="photo_story_p3">
+              어떤 사진은 판매를 위해 남겨지고, 어떤 작업은 실험으로 기록됩니다.
+            </p>
+            <p data-i18n="photo_story_p4">
+              그리고 모든 기록의 중심에는 <strong>‘조용한 순간’</strong>이 있습니다.
+            </p>
+          </div>
+          <div class="story-signature">
+            <div class="sig-name">은하 (Daily Light)</div>
+            <div class="sig-sub" data-i18n="story_sig_photo">Fine Art Photographer</div>
+          </div>
         </div>
       </div>
     </section>
@@ -445,11 +481,28 @@
               <span data-i18n="btn_send_msg">메시지 전송하기</span> ✉️
             </button>
           </div>
+          <div class="contact-direct-wrap">
+            <span class="direct-label" data-i18n="direct_label">또는 이메일 직접 복사:</span>
+            <button type="button" id="btnCopyEmail" class="btn-copy-email">
+              <span id="copyEmailText">📋 10051201b@gmail.com 복사</span>
+            </button>
+          </div>
         </form>
         <div id="contactSuccessMsg" class="contact-success" style="display:none;">
           <div style="font-size:24px; margin-bottom:8px;">✅</div>
-          <div style="font-weight:700; color:#fff;" data-i18n="msg_sent">이메일 클라이언트가 안전하게 연결되었습니다!</div>
-          <div style="font-size:12px; color:var(--text-muted); margin-top:4px;" data-i18n="msg_sent_sub">작성하신 내용이 아티스트 전용 메일로 안전하게 발송됩니다.</div>
+          <div style="font-weight:700; color:#fff;" data-i18n="msg_sent">이메일 전송 준비가 완료되었습니다!</div>
+          <div style="font-size:13px; color:var(--text-muted); margin-top:6px; line-height:1.5;" data-i18n="msg_sent_sub">
+            메일 프로그램이 자동으로 열리지 않는 경우, 아래 웹메일 버튼을 누르시면 작성하신 내용 그대로 전송창이 열립니다.
+          </div>
+          <div class="webmail-btn-group" style="display:flex; gap:10px; justify-content:center; margin-top:16px; flex-wrap:wrap;">
+            <a id="btnOpenGmail" href="#" target="_blank" rel="noopener" class="btn-ext btn-spotify" style="font-size:12px; padding:10px 16px;">
+              <span>Google Gmail로 보내기</span>
+            </a>
+            <a id="btnOpenNaverMail" href="#" target="_blank" rel="noopener" class="btn-ext btn-youtube" style="font-size:12px; padding:10px 16px; background:#03c75a; color:#fff;">
+              <span>네이버 메일로 보내기</span>
+            </a>
+          </div>
+          <button type="button" id="btnResetContact" class="btn-text-close" style="margin-top:16px;">다시 작성하기</button>
         </div>
       </div>
     </div>
