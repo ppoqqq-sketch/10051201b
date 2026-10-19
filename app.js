@@ -70,10 +70,10 @@
       story_section_sub: "10051201b - i'm cho의 창작 세계와 시선",
       story_m_badge: 'MUSIC STORY 🎵',
       story_title: '"1년 6개월의 시간이 음악이 되기까지"',
-      story_p1: '처음부터 음원을 발매하겠다고 마음먹고 시작한 작업은 아니었습니다.<br>각자의 자리에서 삶을 버텨내며 적어 내려갔던 1년 6개월간의 고뇌와 관찰, 사람의 온기를 담은 글귀들이 차곡차곡 쌓여 있었습니다.',
-      story_p2: '시끄럽고 자극적인 소리들로 넘쳐나는 세상 속에서, 언제 틀어도 귀가 피곤하지 않고 마음 한구석에 가만히 온기를 지펴줄 수 있는 노래가 절실했습니다.',
-      story_p3: '<strong>"내가 평생 곁에 두고 듣고 싶은 음악"</strong>을 향한 집념이 결국 36편의 오리지널 앨범으로 피어났고, 오늘날 전 세계 리스너들과 나누는 쉼터가 되었습니다.<br>잠시 쉬어가세요. 당신의 모든 시간은 그 자체로 빛이 납니다.',
-      story_sig_music: 'Music Producer & Songwriter',
+      story_p1: '처음부터 음원을 발매하겠다고 마음먹고 시작한 작업은 아니었습니다.<br>각자의 자리에서 삶을 버텨내며 적어 내려갔던 1년 6개월간의 고뇌와 관찰, 사람의 온기를 담은 시(詩) 같은 언어들이 차곡차곡 쌓여 있었습니다.',
+      story_p2: '이 소중한 기록들에 선율을 입히기 위해, 저는 가장 현대적인 예술적 파트너십을 선택했습니다.<br>생각의 깊이와 서정적인 노랫말을 다듬어준 인공지능 파트너 <strong>Gemini Flash(제미니 플래시)</strong>와 <strong>Argon(아르곤)</strong>이 기획과 사유의 여정을 함께했고, 감성적인 사운드스케이프를 현실화하는 차세대 작곡 엔진 <strong>SUNO(수노)</strong>를 활용하여 멜로디와 편곡을 직조해 나갔습니다.',
+      story_p3: '<strong>"내가 평생 곁에 두고 듣고 싶은 음악, 언제 틀어도 귀가 피로하지 않은 따스한 쉼표."</strong><br>인간의 고유한 감정과 첨단 AI 기술의 정밀한 조화가 빚어낸 36편의 오리지널 앨범이 당신의 모든 순간에 작은 위로와 빛이 되기를 소망합니다.',
+      story_sig_music: 'Total Producer (with Gemini Flash · Argon · SUNO)',
       story_p_badge: 'PHOTOGRAPHY STORY 📸',
       photo_story_title: '"빛이 스며드는 순간을 기록합니다"',
       photo_story_p1: '도시의 가장자리에서,<br>물 위에 흔들리는 반사 속에서,<br>조용히 머무는 아침 공기 사이에서<br>저는 잠시 멈추어 바라봅니다.',
@@ -83,9 +83,6 @@
       story_sig_photo: 'Fine Art Photographer',
       footer_contact: 'Contact (문의)',
       btn_lyrics: '가사',
-      pend_title: '1분 미리듣기가 완료되었습니다',
-      pend_desc: '이 곡의 전곡 고음질 감상 및 스트리밍은 전 세계 공식 플랫폼에서 무료로 즐기실 수 있습니다.',
-      btn_close: '닫기',
       contact_title: '아티스트에게 메시지 보내기',
       contact_sub: "Direct Message to 10051201b-i'm cho",
       contact_notice: '스팸 수집 방지를 위해 이메일 주소를 직접 노출하지 않고 안전하게 메시지를 전달합니다.',
@@ -94,6 +91,7 @@
       f_msg: '메시지 내용',
       btn_send_msg: '메시지 전송하기',
       direct_label: '또는 이메일 직접 복사:',
+      btn_copy_email: '📋 이메일 주소 복사하기',
       msg_sent: '이메일 전송 준비가 완료되었습니다!',
       msg_sent_sub: '메일 프로그램이 자동으로 열리지 않는 경우, 아래 웹메일 버튼을 누르시면 작성하신 내용 그대로 전송창이 열립니다.'
     },
@@ -138,9 +136,9 @@
       story_m_badge: 'MUSIC STORY 🎵',
       story_title: '"How 1.5 Years of Solitude Became Music"',
       story_p1: 'This journey did not begin with commercial ambitions.<br>It started as an accumulated chronicle of solitary thoughts, observation of people, and human warmth written over 18 quiet months.',
-      story_p2: 'In an era overwhelmed by high-stimulus, fatigue-inducing noise, we yearned for songs that never wear out the ears, gently rekindling warmth in quiet corners of the heart.',
-      story_p3: '<strong>"Music I want to keep beside me for a lifetime."</strong><br>That single conviction bloomed into 36 original recordings, now shared as a sanctuary for listeners worldwide.<br>Rest here a while. Every moment of yours shines with purpose.',
-      story_sig_music: 'Music Producer & Songwriter',
+      story_p2: 'To breathe melody into these personal chronicles, I chose a progressive creative partnership between human emotion and artificial intelligence.<br>AI companions <strong>Gemini Flash</strong> and <strong>Argon</strong> journeyed alongside me to refine the philosophical depth, lyrical concepts, and narrative direction, while the cutting-edge musical engine <strong>SUNO</strong> brought the melodies and harmonic arrangements to life.',
+      story_p3: '<strong>"Music I want to keep beside me for a lifetime—a gentle pause that never fatigues the ears."</strong><br>Born from the intimate synergy of human contemplation and generative AI craftsmanship, may these 36 original tracks bring a quiet moment of light and comfort to your day.',
+      story_sig_music: 'Total Producer (with Gemini Flash · Argon · SUNO)',
       story_p_badge: 'PHOTOGRAPHY STORY 📸',
       photo_story_title: '"Recording Moments Where Light Gently Seeps In"',
       photo_story_p1: 'At the edge of the city,<br>in ripples reflecting on the water,<br>amidst the quiet morning air that lingers,<br>I pause and observe.',
@@ -150,9 +148,6 @@
       story_sig_photo: 'Fine Art Photographer',
       footer_contact: 'Contact Artist',
       btn_lyrics: 'Lyrics',
-      pend_title: '60-Second Preview Completed',
-      pend_desc: 'Listen to the full lossless track for free on global official streaming platforms.',
-      btn_close: 'Close',
       contact_title: 'Send a Message to Artist',
       contact_sub: "Direct Message to 10051201b-i'm cho",
       contact_notice: 'Email is cryptographically protected to prevent scraper bots while routing your note directly.',
@@ -161,6 +156,7 @@
       f_msg: 'Message Content',
       btn_send_msg: 'Dispatch Message',
       direct_label: 'Or copy direct email:',
+      btn_copy_email: '📋 Copy Email Address',
       msg_sent: 'Email Dispatch Initialized!',
       msg_sent_sub: 'If your mail app did not open automatically, click the webmail buttons below to open directly.'
     }
@@ -237,11 +233,6 @@
     lyricsTextEn: document.getElementById('lyricsTextEn'),
     btnTabKr: document.getElementById('btnTabKr'),
     btnTabEn: document.getElementById('btnTabEn'),
-
-    // Preview End Modal
-    previewEndModal: document.getElementById('previewEndModal'),
-    previewEndBackdrop: document.getElementById('previewEndBackdrop'),
-    btnClosePreviewModal: document.getElementById('btnClosePreviewModal'),
 
     // Contact Modal
     contactModal: document.getElementById('contactModal'),
@@ -563,17 +554,6 @@
     document.body.style.overflow = '';
   }
 
-  // Preview End Modal
-  function openPreviewEndModal() {
-    el.previewEndModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePreviewEndModal() {
-    el.previewEndModal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
   // Contact Modal
   function openContactModal() {
     el.contactSuccessMsg.style.display = 'none';
@@ -685,19 +665,17 @@
       }
     });
 
-    // 60-second Preview enforcement & Timeupdate
+    // 60-second Preview enforcement & Timeupdate (모달 팝업 없이 부드러운 다음 곡 전환)
     el.audio.addEventListener('timeupdate', () => {
       const cur = el.audio.currentTime;
 
       if (cur >= PREVIEW_LIMIT) {
-        el.audio.pause();
-        el.audio.currentTime = 0;
-        setPlayingState(false);
-        el.progressBarFill.style.width = '100%';
-        el.spotProgressFill.style.width = '100%';
-        el.currentTime.textContent = '1:00';
-        el.spotCurrentTime.textContent = '1:00';
-        openPreviewEndModal();
+        if (state.repeatMode === 'one') {
+          el.audio.currentTime = 0;
+          el.audio.play();
+        } else {
+          playNext();
+        }
         return;
       }
 
@@ -709,6 +687,15 @@
       el.progressBarFill.style.width = `${pct}%`;
       el.progressThumb.style.left = `${pct}%`;
       el.spotProgressFill.style.width = `${pct}%`;
+    });
+
+    el.audio.addEventListener('ended', () => {
+      if (state.repeatMode === 'one') {
+        el.audio.currentTime = 0;
+        el.audio.play();
+      } else {
+        playNext();
+      }
     });
 
     // Spotlight Scrubber Seeking
@@ -785,10 +772,6 @@
     el.btnCloseLightbox.addEventListener('click', closeLightbox);
     el.photoLightboxBackdrop.addEventListener('click', closeLightbox);
 
-    // Preview End Modal
-    el.btnClosePreviewModal.addEventListener('click', closePreviewEndModal);
-    el.previewEndBackdrop.addEventListener('click', closePreviewEndModal);
-
     // Contact Modal
     el.btnOpenContact.addEventListener('click', openContactModal);
     el.btnFooterContact.addEventListener('click', openContactModal);
@@ -801,10 +784,9 @@
         const email = atob(SECURE_EMAIL_B64);
         navigator.clipboard.writeText(email).then(() => {
           if (el.copyEmailText) {
-            const original = el.copyEmailText.textContent;
             el.copyEmailText.textContent = state.currentLang === 'en' ? '✓ Copied!' : '✓ 복사되었습니다!';
             setTimeout(() => {
-              el.copyEmailText.textContent = original;
+              el.copyEmailText.textContent = state.currentLang === 'en' ? '📋 Copy Email Address' : '📋 이메일 주소 복사하기';
             }, 2500);
           }
         }).catch(() => {
@@ -830,7 +812,6 @@
       if (e.key === 'Escape') {
         closeLyricsModal();
         closeLightbox();
-        closePreviewEndModal();
         closeContactModal();
       }
       if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
