@@ -1,29 +1,30 @@
 /* ==========================================================================
-   10051201b - Official Music Player & Web App Controller
-   Upgraded with 36 Tracks, Preview Mode (60s), Bilingual i18n, & Safe Contact
+   10051201b - Official Music & Photography Archive Controller
+   - Single-Track Spotlight Showcase (하나씩 집중 감상)
+   - Fine Art Photography Gallery & Lightbox
+   - 60s Preview Mode & Download Protection
+   - Bilingual i18n Engine (KO / EN)
+   - Privacy-Safe Contact Dispatch
    ========================================================================== */
 
 (function () {
   'use strict';
 
   const PREVIEW_LIMIT = 60; // 60 seconds preview
-
-  // Obfuscated email (10051201b@gmail.com in base64 to prevent scraping bots)
-  const SECURE_EMAIL_B64 = 'MTAwNTEyMDFiQGdtYWlsLmNvbQ==';
+  const SECURE_EMAIL_B64 = 'MTAwNTEyMDFiQGdtYWlsLmNvbQ=='; // 10051201b@gmail.com
 
   // State Management
   const state = {
     catalog: null,
+    photos: [],
     allTracks: [],
-    filteredTracks: [],
-    currentTrackIndex: -1,
+    currentFilteredList: [],
+    currentTrackIndex: 0,
     isPlaying: false,
     isShuffle: false,
     repeatMode: 'all', // 'all', 'one', 'none'
     activeTab: 'all',
-    searchQuery: '',
-    currentLyricsTrack: null,
-    currentLang: localStorage.getItem('lang_10051201b') || 'ko', // 'ko' or 'en'
+    currentLang: localStorage.getItem('lang_10051201b') || 'ko',
     audio: null
   };
 
@@ -32,39 +33,38 @@
     ko: {
       lang_btn: 'English',
       lang_flag: '🇺🇸',
-      nav_disco: '디스코그래피',
-      nav_blogs: '사진 블로그',
+      nav_disco: '음악 감상',
+      nav_gallery: '사진 갤러리',
+      nav_blogs: '블로그',
       nav_story: '스토리',
       nav_contact: '문의하기',
       hero_badge: 'OFFICIAL ARTIST ARCHIVE',
       hero_title: '삶의 쉼표가 되는 <span>36편의 노래</span>',
-      hero_desc: '1년 6개월 동안 축적된 삶의 고뇌와 시(詩) 같은 언어들이 선율을 입었습니다.<br>자극과 소음으로 지친 하루 끝, 언제든 찾아와 편안히 머물다 가실 수 있는 따뜻한 쉼터입니다.',
-      btn_play_all: '전곡 미리듣기',
-      btn_shuffle_all: '랜덤 재생',
+      hero_desc: '1년 6개월 동안 축적된 삶의 고뇌와 시(詩) 같은 언어들이 선율을 입었습니다.<br>곡 하나하나에 담긴 온기를 한 곡씩 집중해서 감상해 보세요.',
       metric_albums: '정규 앨범',
       metric_tracks: '오리지널 트랙',
-      metric_preview: '60초 미리듣기 지원',
+      metric_preview: '하나씩 듣는 미리듣기',
       metric_streaming: 'Spotify & YouTube 정식 발매',
-      disco_title: '디스코그래피',
-      disco_sub: 'Discography & Tracklist',
+      showcase_badge: 'FEATURED TRACK',
+      showcase_title: '한 곡씩 집중 감상하기',
+      showcase_sub: 'Track by Track Spotlight Player',
       tab_all: '전체 (36곡)',
-      tab_a1: '1집 : 빛이 나는 시간 (21곡)',
-      tab_a2: '2집 : 여백 (13곡)',
-      tab_a3: '3집 : 다른 하늘, 같은 바람 (2곡)',
-      search_placeholder: '곡 제목, 가사, 장르 검색 (예: 박하사탕, 포크, 쉼터)...',
-      search_total_prefix: '총 ',
-      search_total_suffix: '곡',
-      search_empty_title: '일치하는 곡을 찾을 수 없습니다',
-      search_empty_sub: '다른 검색어를 입력하시거나 탭을 변경해 보세요.',
-      preview_notice: '홈페이지에서는 60초 미리듣기가 제공되며, 전곡 고음질 감상은 Spotify 및 YouTube에서 즐기실 수 있습니다.',
-      card_lyrics_btn: '가사 보기',
-      blog_badge: 'PHOTO ARCHIVE',
-      blog_title: '사진 블로그 & 에세이',
-      blog_sub: '순간의 빛과 시선을 담아내는 아티스트의 사진 공간',
-      naver_desc: '일상의 따스한 빛과 소박한 시선을 기록하는 한국어 감성 사진 블로그입니다.<br>계절이 머무는 길목과 지나쳐간 온기들을 사진으로 나눕니다.',
+      tab_a1: '1집 : 빛이 나는 시간 (21)',
+      tab_a2: '2집 : 여백 (13)',
+      tab_a3: '3집 : 다른 하늘 (2)',
+      strip_label: '전곡 넘겨보기 (클릭 시 바로 이동)',
+      lyrics_excerpt: '가사 발췌',
+      btn_full_lyrics: '전체 가사 보기 →',
+      gallery_badge: 'FINE ART PHOTOGRAPHY',
+      gallery_title: '은하(Daily Light)의 사진 작품 갤러리',
+      gallery_sub: '빛이 머무는 길목과 계절의 시선을 담아낸 오리지널 사진 작품들',
+      blog_badge: 'OFFICIAL BLOGS',
+      blog_title: '공식 사진 블로그',
+      blog_sub: '더 많은 사진과 서정적인 일상의 이야기들을 만나보세요',
+      naver_desc: '일상의 따스한 빛과 소박한 시선을 기록하는 한국어 감성 사진 블로그입니다.<br>계절이 머무는 길목과 지나쳐간 온기들을 사진과 에세이로 나눕니다.',
       google_desc: 'An English photo diary capturing quiet landscapes, silent moments, and reflections.<br>Visual essays crafted in parallel with musical journeys.',
       btn_visit_naver: '네이버 블로그 방문하기',
-      btn_visit_google: 'Visit English Blog',
+      btn_visit_google: 'Visit English Blog (dailylight369.blogspot.com)',
       story_badge: 'CREATIVE STORY',
       story_title: '"1년 6개월의 시간이 음악이 되기까지"',
       story_p1: '처음부터 음원을 발매하겠다고 마음먹고 시작한 작업은 아니었습니다.<br>각자의 자리에서 삶을 버텨내며 적어 내려갔던 1년 6개월간의 고뇌와 관찰, 사람의 온기를 담은 글귀들이 차곡차곡 쌓여 있었습니다.',
@@ -89,39 +89,38 @@
     en: {
       lang_btn: '한국어',
       lang_flag: '🇰🇷',
-      nav_disco: 'Discography',
-      nav_blogs: 'Photo Blogs',
+      nav_disco: 'Music Showcase',
+      nav_gallery: 'Photography',
+      nav_blogs: 'Blogs',
       nav_story: 'Story',
       nav_contact: 'Contact',
       hero_badge: 'OFFICIAL ARTIST ARCHIVE',
       hero_title: 'Restful Moments Through <span>36 Original Tracks</span>',
-      hero_desc: 'One and a half years of quiet reflection and poetic contemplation transformed into soothing melodies.<br>A warm musical sanctuary to rest your soul after exhausting days in a noisy world.',
-      btn_play_all: 'Preview All',
-      btn_shuffle_all: 'Shuffle Play',
+      hero_desc: 'One and a half years of quiet reflection and poetic contemplation transformed into soothing melodies.<br>Explore each track one by one with heartfelt warmth.',
       metric_albums: 'Studio Albums',
       metric_tracks: 'Original Tracks',
-      metric_preview: '60s Previews',
+      metric_preview: 'Track by Track Previews',
       metric_streaming: 'Spotify & YouTube Releases',
-      disco_title: 'Discography',
-      disco_sub: 'Discography & Tracklist',
+      showcase_badge: 'FEATURED TRACK',
+      showcase_title: 'Track by Track Showcase',
+      showcase_sub: 'Focused spotlight listening experience',
       tab_all: 'All (36 Tracks)',
       tab_a1: '1st : Shining Moment (21)',
       tab_a2: '2nd : The Blank Space (13)',
-      tab_a3: '3rd : Same Wind, Different Skies (2)',
-      search_placeholder: 'Search title, lyrics, genre (e.g. Candy, Folk, Rest)...',
-      search_total_prefix: 'Total ',
-      search_total_suffix: ' tracks',
-      search_empty_title: 'No matching tracks found',
-      search_empty_sub: 'Please try another search keyword or switch tabs.',
-      preview_notice: 'Website plays 60-second previews. Enjoy full lossless tracks on Spotify and YouTube.',
-      card_lyrics_btn: 'View Lyrics',
-      blog_badge: 'PHOTO ARCHIVE',
-      blog_title: 'Photo Blogs & Essays',
-      blog_sub: 'Visual diaries capturing quiet light, seasonal horizons, and heartfelt moments',
+      tab_a3: '3rd : Same Wind (2)',
+      strip_label: 'Browse Tracks (Click to jump)',
+      lyrics_excerpt: 'Lyrics Excerpt',
+      btn_full_lyrics: 'View Full Lyrics →',
+      gallery_badge: 'FINE ART PHOTOGRAPHY',
+      gallery_title: 'Daily Light Fine Art Photography',
+      gallery_sub: 'Visual poetry capturing seasonal light, quiet horizons, and lingering stillness',
+      blog_badge: 'OFFICIAL BLOGS',
+      blog_title: 'Official Photo Blogs',
+      blog_sub: 'Explore more photography and lyrical essays',
       naver_desc: 'Korean photo journal chronicling gentle light, quiet roads, and lingering warmth.<br>A poetic reflection of seasons and daily light.',
       google_desc: 'An English photo diary capturing quiet landscapes, silent moments, and reflections.<br>Visual essays crafted in parallel with musical journeys.',
       btn_visit_naver: 'Visit Naver Photo Blog',
-      btn_visit_google: 'Visit English Blogger',
+      btn_visit_google: 'Visit English Blog (dailylight369.blogspot.com)',
       story_badge: 'CREATIVE STORY',
       story_title: '"How 1.5 Years of Solitude Became Music"',
       story_p1: 'This journey did not begin with commercial ambitions.<br>It started as an accumulated chronicle of solitary thoughts, observation of people, and human warmth written over 18 quiet months.',
@@ -148,19 +147,43 @@
   // DOM Elements
   const el = {
     audio: document.getElementById('audioElement'),
-    tracksGrid: document.getElementById('tracksGrid'),
-    searchCount: document.getElementById('searchResultCount'),
-    searchInput: document.getElementById('trackSearchInput'),
-    clearSearchBtn: document.getElementById('clearSearchBtn'),
-    tabBtns: document.querySelectorAll('.tab-btn'),
-    btnPlayAll: document.getElementById('btnPlayAll'),
-    btnShuffleAll: document.getElementById('btnShuffleAll'),
     btnLangToggle: document.getElementById('btnLangToggle'),
     langFlag: document.getElementById('langFlag'),
     langLabel: document.getElementById('langLabel'),
     heroTitle: document.getElementById('heroTitle'),
     heroDesc: document.getElementById('heroDesc'),
     storyContent: document.getElementById('storyContent'),
+    tabBtns: document.querySelectorAll('.tab-btn'),
+
+    // Spotlight Elements
+    spotlightCard: document.getElementById('spotlightCard'),
+    spotCover: document.getElementById('spotCover'),
+    spotTrackNum: document.getElementById('spotTrackNum'),
+    btnSpotPlay: document.getElementById('btnSpotPlay'),
+    svgSpotPlay: document.getElementById('svgSpotPlay'),
+    svgSpotPause: document.getElementById('svgSpotPause'),
+    btnSpotPrev: document.getElementById('btnSpotPrev'),
+    btnSpotNext: document.getElementById('btnSpotNext'),
+    spotAlbumTag: document.getElementById('spotAlbumTag'),
+    spotGenreTag: document.getElementById('spotGenreTag'),
+    spotTitleKr: document.getElementById('spotTitleKr'),
+    spotTitleEn: document.getElementById('spotTitleEn'),
+    spotCurrentTime: document.getElementById('spotCurrentTime'),
+    spotProgressBar: document.getElementById('spotProgressBar'),
+    spotProgressFill: document.getElementById('spotProgressFill'),
+    spotLyricsPreview: document.getElementById('spotLyricsPreview'),
+    btnSpotViewLyrics: document.getElementById('btnSpotViewLyrics'),
+    trackThumbStrip: document.getElementById('trackThumbStrip'),
+    stripCount: document.getElementById('stripCount'),
+
+    // Photography Gallery
+    photoGalleryGrid: document.getElementById('photoGalleryGrid'),
+    photoLightboxModal: document.getElementById('photoLightboxModal'),
+    photoLightboxBackdrop: document.getElementById('photoLightboxBackdrop'),
+    btnCloseLightbox: document.getElementById('btnCloseLightbox'),
+    lightboxImg: document.getElementById('lightboxImg'),
+    lightboxTitle: document.getElementById('lightboxTitle'),
+    lightboxLocation: document.getElementById('lightboxLocation'),
 
     // Bottom Player
     playerCover: document.getElementById('playerCover'),
@@ -217,8 +240,14 @@
   // Initialize App
   async function init() {
     try {
-      const response = await fetch('data/catalog.json');
-      state.catalog = await response.json();
+      // Load Catalog & Photos in parallel
+      const [catRes, photoRes] = await Promise.all([
+        fetch('data/catalog.json'),
+        fetch('data/photos.json')
+      ]);
+
+      state.catalog = await catRes.json();
+      state.photos = await photoRes.json();
 
       state.allTracks = [];
       state.catalog.albums.forEach(alb => {
@@ -227,10 +256,11 @@
         });
       });
 
-      state.filteredTracks = [...state.allTracks];
+      state.currentFilteredList = [...state.allTracks];
 
       applyLanguage(state.currentLang);
-      renderTracks();
+      renderTrackThumbStrip();
+      renderPhotoGallery();
       bindEvents();
       setupMediaSession();
 
@@ -238,8 +268,7 @@
         selectTrack(0, false);
       }
     } catch (err) {
-      console.error('Failed to load catalog:', err);
-      el.tracksGrid.innerHTML = `<div style="text-align:center; padding:40px; color:#ff6b6b;">음원 카탈로그를 불러오지 못했습니다. (${err.message})</div>`;
+      console.error('Initialization error:', err);
     }
   }
 
@@ -257,11 +286,9 @@
     localStorage.setItem('lang_10051201b', lang);
     const t = i18n[lang];
 
-    // Toggle Button
     el.langFlag.textContent = t.lang_flag;
     el.langLabel.textContent = t.lang_btn;
 
-    // Attributes with data-i18n
     document.querySelectorAll('[data-i18n]').forEach(elem => {
       const key = elem.getAttribute('data-i18n');
       if (t[key]) {
@@ -269,89 +296,124 @@
       }
     });
 
-    // Special HTML blocks
     el.heroTitle.innerHTML = t.hero_title;
     el.heroDesc.innerHTML = t.hero_desc;
     el.storyContent.innerHTML = `<p>${t.story_p1}</p><p>${t.story_p2}</p><p>${t.story_p3}</p>`;
-    el.searchInput.placeholder = t.search_placeholder;
 
-    renderTracks();
+    updateSpotlightDisplay();
+    renderTrackThumbStrip();
+    renderPhotoGallery();
   }
 
-  // Render Tracks to Grid
-  function renderTracks() {
-    const list = state.filteredTracks;
-    const t = i18n[state.currentLang];
-    el.searchCount.textContent = `${t.search_total_prefix}${list.length}${t.search_total_suffix}`;
+  // Render Track Thumb Strip below Spotlight
+  function renderTrackThumbStrip() {
+    const list = state.currentFilteredList;
+    el.stripCount.textContent = `${state.currentTrackIndex + 1} / ${state.allTracks.length}`;
 
-    if (list.length === 0) {
-      el.tracksGrid.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
-          <div style="font-size: 32px; margin-bottom: 12px;">🔍</div>
-          <div style="font-size: 16px; font-weight: 700; color: #fff;">${t.search_empty_title}</div>
-          <div style="font-size: 13px; margin-top: 6px;">${t.search_empty_sub}</div>
-        </div>
-      `;
-      return;
-    }
-
-    el.tracksGrid.innerHTML = list.map((track) => {
-      const isCurrent = state.currentTrackIndex >= 0 && state.allTracks[state.currentTrackIndex]?.id === track.id;
-      const isPlayingCurrent = isCurrent && state.isPlaying;
-
-      const mainTitle = state.currentLang === 'en' && track.title_en ? track.title_en : track.title_kr;
-      const subTitle = state.currentLang === 'en' && track.title_en ? track.title_kr : (track.title_en || '');
+    el.trackThumbStrip.innerHTML = list.map((track) => {
+      const isCur = state.allTracks[state.currentTrackIndex]?.id === track.id;
+      const title = state.currentLang === 'en' && track.title_en ? track.title_en : track.title_kr;
 
       return `
-        <div class="track-card ${isCurrent ? 'is-playing' : ''}" data-id="${track.id}">
-          <div class="card-top">
-            <span class="card-badge-num">#${track.track_num}</span>
-            <img src="${track.cover_url || 'media/covers/master_album1.jpg'}" alt="${track.title_kr}" class="card-cover" loading="lazy">
-            <div class="card-play-overlay">
-              <div class="overlay-play-btn">
-                ${isPlayingCurrent ?
-                  `<svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>` :
-                  `<svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>`
-                }
-              </div>
-            </div>
-          </div>
-          <div class="card-info">
-            <div class="card-title-kr" title="${mainTitle}">${mainTitle}</div>
-            <div class="card-title-en" title="${subTitle}">${subTitle}</div>
-            ${track.genre ? `<span class="card-genre">${track.genre}</span>` : ''}
-          </div>
-          <div class="card-bottom-actions">
-            <span class="card-album-tag">${track.album_title}</span>
-            <button class="btn-card-lyrics" data-id="${track.id}">${t.card_lyrics_btn}</button>
+        <div class="strip-item ${isCur ? 'active' : ''}" data-id="${track.id}">
+          <img src="${track.cover_url || 'media/covers/master_album1.jpg'}" alt="" class="strip-thumb-img">
+          <div class="strip-item-info">
+            <div class="strip-item-title">${title}</div>
+            <div class="strip-item-num">#${track.track_num} • ${track.album_title}</div>
           </div>
         </div>
       `;
     }).join('');
 
-    // Attach card click handlers
-    el.tracksGrid.querySelectorAll('.track-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-card-lyrics')) {
-          e.stopPropagation();
-          const tId = e.target.getAttribute('data-id');
-          openLyricsModalById(tId);
-          return;
-        }
-        const tId = card.getAttribute('data-id');
+    el.trackThumbStrip.querySelectorAll('.strip-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const tId = item.getAttribute('data-id');
         const targetIdx = state.allTracks.findIndex(t => t.id === tId);
         if (targetIdx >= 0) {
-          if (state.currentTrackIndex === targetIdx) {
-            togglePlay();
-          } else {
-            selectTrack(targetIdx, true);
-          }
+          selectTrack(targetIdx, true);
         }
       });
     });
   }
 
-  // Select and Play Track
+  // Render Photography Gallery
+  function renderPhotoGallery() {
+    if (!state.photos || state.photos.length === 0) return;
+
+    el.photoGalleryGrid.innerHTML = state.photos.map((p, idx) => {
+      const title = state.currentLang === 'en' ? p.title_en : p.title_kr;
+      return `
+        <div class="photo-card" data-idx="${idx}">
+          <img src="media/photos/${p.filename}" alt="${title}" class="photo-img" loading="lazy">
+          <div class="photo-overlay">
+            <div class="photo-title">${title}</div>
+            <div class="photo-loc">📍 ${p.location}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    el.photoGalleryGrid.querySelectorAll('.photo-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.getAttribute('data-idx'), 10);
+        openLightbox(state.photos[idx]);
+      });
+    });
+  }
+
+  // Open Photo Lightbox
+  function openLightbox(photo) {
+    if (!photo) return;
+    el.lightboxImg.src = `media/photos/${photo.filename}`;
+    el.lightboxTitle.textContent = state.currentLang === 'en' ? photo.title_en : photo.title_kr;
+    el.lightboxLocation.textContent = `📍 ${photo.location}`;
+    el.photoLightboxModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    el.photoLightboxModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Update Spotlight UI Display for Selected Track
+  function updateSpotlightDisplay() {
+    const track = state.allTracks[state.currentTrackIndex];
+    if (!track) return;
+
+    const mainTitle = state.currentLang === 'en' && track.title_en ? track.title_en : track.title_kr;
+    const subTitle = state.currentLang === 'en' && track.title_en ? track.title_kr : (track.title_en || track.album_title);
+
+    el.spotCover.src = track.cover_url || 'media/covers/master_album1.jpg';
+    el.spotTrackNum.textContent = `Track ${track.track_num} of ${state.allTracks.length}`;
+    el.spotAlbumTag.textContent = track.album_title;
+    el.spotGenreTag.textContent = track.genre || 'Acoustic / Folk';
+    el.spotTitleKr.textContent = mainTitle;
+    el.spotTitleEn.textContent = subTitle;
+
+    // First 3 lines of lyrics for teaser
+    const rawLyrics = (state.currentLang === 'en' && track.lyrics_en) ? track.lyrics_en : (track.lyrics_kr || '');
+    const cleanExcerpt = rawLyrics.split('\n').filter(l => l.trim() && !l.startsWith('[')).slice(0, 3).join('\n') || '따스한 선율과 함께 마음의 쉼표를 전합니다.';
+    el.spotLyricsPreview.textContent = cleanExcerpt;
+
+    // Bottom Player Meta
+    el.playerTitle.textContent = mainTitle;
+    el.playerSub.textContent = `${track.album_title} • 10051201b-i'm cho`;
+    el.playerCover.src = track.cover_url || 'media/covers/master_album1.jpg';
+
+    // Strip Active Item Highlight
+    document.querySelectorAll('.strip-item').forEach(item => {
+      const isCur = item.getAttribute('data-id') === track.id;
+      item.classList.toggle('active', isCur);
+      if (isCur) {
+        item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    });
+
+    el.stripCount.textContent = `${state.currentTrackIndex + 1} / ${state.allTracks.length}`;
+  }
+
+  // Select Track
   function selectTrack(index, autoplay = true) {
     if (index < 0 || index >= state.allTracks.length) return;
     state.currentTrackIndex = index;
@@ -359,15 +421,9 @@
 
     el.audio.src = track.audio_url;
     el.audio.currentTime = 0;
-
-    const displayTitle = state.currentLang === 'en' && track.title_en ? track.title_en : track.title_kr;
-    el.playerTitle.textContent = displayTitle;
-    el.playerSub.textContent = `${track.album_title} • 10051201b-i'm cho`;
-    el.playerCover.src = track.cover_url || 'media/covers/master_album1.jpg';
     state.currentLyricsTrack = track;
 
-    el.totalDuration.textContent = '1:00'; // Fixed 60s preview duration
-    updateCardVisuals();
+    updateSpotlightDisplay();
     updateMediaSessionMetadata(track);
 
     if (autoplay) {
@@ -387,13 +443,18 @@
     if (isPlaying) {
       el.svgPlay.style.display = 'none';
       el.svgPause.style.display = 'block';
+      el.svgSpotPlay.style.display = 'none';
+      el.svgSpotPause.style.display = 'block';
       el.visualizer.classList.add('playing');
+      el.spotlightCard.classList.add('is-playing');
     } else {
       el.svgPlay.style.display = 'block';
       el.svgPause.style.display = 'none';
+      el.svgSpotPlay.style.display = 'block';
+      el.svgSpotPause.style.display = 'none';
       el.visualizer.classList.remove('playing');
+      el.spotlightCard.classList.remove('is-playing');
     }
-    updateCardVisuals();
   }
 
   function togglePlay() {
@@ -430,63 +491,31 @@
     selectTrack(prevIdx, true);
   }
 
-  function updateCardVisuals() {
-    const curTrack = state.allTracks[state.currentTrackIndex];
-    document.querySelectorAll('.track-card').forEach(card => {
-      const isCur = curTrack && card.getAttribute('data-id') === curTrack.id;
-      if (isCur) {
-        card.classList.add('is-playing');
-        const overlayBtn = card.querySelector('.overlay-play-btn');
-        if (overlayBtn) {
-          overlayBtn.innerHTML = state.isPlaying ?
-            `<svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>` :
-            `<svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>`;
-        }
-      } else {
-        card.classList.remove('is-playing');
-        const overlayBtn = card.querySelector('.overlay-play-btn');
-        if (overlayBtn) {
-          overlayBtn.innerHTML = `<svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>`;
-        }
+  // Filter Tabs
+  function applyTabFilter(tabKey) {
+    state.activeTab = tabKey;
+    if (tabKey === 'album1') {
+      state.currentFilteredList = state.allTracks.filter(t => t.album_id === 'album1');
+    } else if (tabKey === 'album2') {
+      state.currentFilteredList = state.allTracks.filter(t => t.album_id === 'album2');
+    } else if (tabKey === 'album3') {
+      state.currentFilteredList = state.allTracks.filter(t => t.album_id === 'album3');
+    } else {
+      state.currentFilteredList = [...state.allTracks];
+    }
+
+    renderTrackThumbStrip();
+
+    // Select first track of that album
+    if (state.currentFilteredList.length > 0) {
+      const targetIdx = state.allTracks.findIndex(t => t.id === state.currentFilteredList[0].id);
+      if (targetIdx >= 0) {
+        selectTrack(targetIdx, true);
       }
-    });
-  }
-
-  // Filter & Search Logic
-  function applyFilter() {
-    let result = state.allTracks;
-
-    // Filter by Tab
-    if (state.activeTab === 'album1') {
-      result = result.filter(t => t.album_id === 'album1');
-    } else if (state.activeTab === 'album2') {
-      result = result.filter(t => t.album_id === 'album2');
-    } else if (state.activeTab === 'album3') {
-      result = result.filter(t => t.album_id === 'album3');
     }
-
-    // Filter by Search Query
-    const q = state.searchQuery.trim().toLowerCase();
-    if (q) {
-      result = result.filter(t =>
-        (t.title_kr && t.title_kr.toLowerCase().includes(q)) ||
-        (t.title_en && t.title_en.toLowerCase().includes(q)) ||
-        (t.genre && t.genre.toLowerCase().includes(q)) ||
-        (t.lyrics_kr && t.lyrics_kr.toLowerCase().includes(q))
-      );
-    }
-
-    state.filteredTracks = result;
-    renderTracks();
   }
 
   // Lyrics Modal
-  function openLyricsModalById(trackId) {
-    const track = state.allTracks.find(t => t.id === trackId);
-    if (!track) return;
-    openLyricsModal(track);
-  }
-
   function openLyricsModal(track) {
     state.currentLyricsTrack = track;
     el.lyricsModalTitle.textContent = track.title_kr;
@@ -495,7 +524,6 @@
     el.lyricsTextKr.textContent = track.lyrics_kr || '(등록된 한국어 가사가 없습니다)';
     el.lyricsTextEn.textContent = track.lyrics_en || '(No English lyrics available)';
 
-    // Reset to Korean tab
     el.btnTabKr.classList.add('active');
     el.btnTabEn.classList.remove('active');
     el.lyricsTextKr.style.display = 'block';
@@ -540,14 +568,11 @@
     const reply = el.contactReply.value.trim();
     const msg = el.contactMsg.value.trim();
 
-    // Decode safe email
     const recipient = atob(SECURE_EMAIL_B64);
     const subject = encodeURIComponent(`[10051201b 아티스트 웹사이트 문의] ${name}님으로부터`);
     const body = encodeURIComponent(`보내신 분: ${name}\n답장받을 이메일: ${reply}\n\n[문의 내용]\n${msg}\n\n---\n10051201b Official Archive Dispatch`);
 
-    // Safe mailto trigger
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-
     el.contactForm.style.display = 'none';
     el.contactSuccessMsg.style.display = 'block';
   }
@@ -584,18 +609,26 @@
       applyLanguage(nextLang);
     });
 
-    // Play / Pause Button
+    // Spotlight Play & Navigation Buttons
+    el.btnSpotPlay.addEventListener('click', togglePlay);
+    el.btnSpotPrev.addEventListener('click', playPrev);
+    el.btnSpotNext.addEventListener('click', playNext);
+    el.btnSpotViewLyrics.addEventListener('click', () => {
+      if (state.allTracks[state.currentTrackIndex]) {
+        openLyricsModal(state.allTracks[state.currentTrackIndex]);
+      }
+    });
+
+    // Bottom Player Controls
     el.btnPlayPause.addEventListener('click', togglePlay);
     el.btnNext.addEventListener('click', playNext);
     el.btnPrev.addEventListener('click', playPrev);
 
-    // Shuffle
     el.btnShuffle.addEventListener('click', () => {
       state.isShuffle = !state.isShuffle;
       el.btnShuffle.classList.toggle('active', state.isShuffle);
     });
 
-    // Repeat Mode
     el.btnRepeat.addEventListener('click', () => {
       if (state.repeatMode === 'all') {
         state.repeatMode = 'one';
@@ -605,12 +638,10 @@
         state.repeatMode = 'none';
         el.btnRepeat.classList.remove('active');
         el.btnRepeat.style.opacity = '0.4';
-        el.btnRepeat.title = '반복 끄기';
       } else {
         state.repeatMode = 'all';
         el.btnRepeat.classList.remove('active');
         el.btnRepeat.style.opacity = '1';
-        el.btnRepeat.title = '전체 반복';
       }
     });
 
@@ -618,104 +649,72 @@
     el.audio.addEventListener('timeupdate', () => {
       const cur = el.audio.currentTime;
 
-      // 60s Preview Check!
       if (cur >= PREVIEW_LIMIT) {
         el.audio.pause();
         el.audio.currentTime = 0;
         setPlayingState(false);
         el.progressBarFill.style.width = '100%';
+        el.spotProgressFill.style.width = '100%';
         el.currentTime.textContent = '1:00';
+        el.spotCurrentTime.textContent = '1:00';
         openPreviewEndModal();
         return;
       }
 
-      el.currentTime.textContent = formatTime(cur);
+      const formatted = formatTime(cur);
+      el.currentTime.textContent = formatted;
+      el.spotCurrentTime.textContent = formatted;
+
       const pct = (cur / PREVIEW_LIMIT) * 100;
       el.progressBarFill.style.width = `${pct}%`;
       el.progressThumb.style.left = `${pct}%`;
+      el.spotProgressFill.style.width = `${pct}%`;
     });
 
-    // Progress Bar Seeking (clamped to 60s)
-    let isDragging = false;
-    function seek(e) {
-      const rect = el.progressContainer.getBoundingClientRect();
-      const clickX = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-      const width = rect.width;
-      let pct = Math.max(0, Math.min(1, clickX / width));
+    // Spotlight Scrubber Seeking
+    function seekSpotlight(e) {
+      const rect = el.spotProgressBar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
       el.audio.currentTime = pct * PREVIEW_LIMIT;
     }
+    el.spotProgressBar.addEventListener('click', seekSpotlight);
 
+    // Bottom Scrubber Seeking
+    let isDragging = false;
+    function seekBottom(e) {
+      const rect = el.progressContainer.getBoundingClientRect();
+      const clickX = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      el.audio.currentTime = pct * PREVIEW_LIMIT;
+    }
     el.progressContainer.addEventListener('mousedown', (e) => {
       isDragging = true;
-      seek(e);
+      seekBottom(e);
     });
     window.addEventListener('mousemove', (e) => {
-      if (isDragging) seek(e);
+      if (isDragging) seekBottom(e);
     });
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    el.progressContainer.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      seek(e);
-    }, { passive: true });
-    window.addEventListener('touchmove', (e) => {
-      if (isDragging) seek(e);
-    }, { passive: true });
-    window.addEventListener('touchend', () => {
-      isDragging = false;
-    });
+    window.addEventListener('mouseup', () => { isDragging = false; });
 
     // Volume Slider
     el.volumeSlider.addEventListener('input', (e) => {
-      const val = parseFloat(e.target.value);
-      el.audio.volume = val;
+      el.audio.volume = parseFloat(e.target.value);
       el.audio.muted = false;
     });
 
-    // Mute Button
     el.btnMute.addEventListener('click', () => {
       el.audio.muted = !el.audio.muted;
       el.btnMute.style.opacity = el.audio.muted ? '0.4' : '1';
     });
 
-    // Tabs
+    // Album Tabs Filter
     el.tabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         el.tabBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        state.activeTab = btn.getAttribute('data-tab');
-        applyFilter();
+        applyTabFilter(btn.getAttribute('data-tab'));
       });
-    });
-
-    // Search Input
-    el.searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value;
-      el.clearSearchBtn.style.display = state.searchQuery ? 'block' : 'none';
-      applyFilter();
-    });
-
-    el.clearSearchBtn.addEventListener('click', () => {
-      el.searchInput.value = '';
-      state.searchQuery = '';
-      el.clearSearchBtn.style.display = 'none';
-      applyFilter();
-    });
-
-    // Hero Action Buttons
-    el.btnPlayAll.addEventListener('click', () => {
-      state.isShuffle = false;
-      el.btnShuffle.classList.remove('active');
-      selectTrack(0, true);
-    });
-
-    el.btnShuffleAll.addEventListener('click', () => {
-      state.isShuffle = true;
-      el.btnShuffle.classList.add('active');
-      const rand = Math.floor(Math.random() * state.allTracks.length);
-      selectTrack(rand, true);
     });
 
     // Lyrics Modal
@@ -742,6 +741,10 @@
       el.lyricsTextKr.style.display = 'none';
     });
 
+    // Lightbox Modal
+    el.btnCloseLightbox.addEventListener('click', closeLightbox);
+    el.photoLightboxBackdrop.addEventListener('click', closeLightbox);
+
     // Preview End Modal
     el.btnClosePreviewModal.addEventListener('click', closePreviewEndModal);
     el.previewEndBackdrop.addEventListener('click', closePreviewEndModal);
@@ -757,6 +760,7 @@
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeLyricsModal();
+        closeLightbox();
         closePreviewEndModal();
         closeContactModal();
       }
@@ -764,10 +768,15 @@
         e.preventDefault();
         togglePlay();
       }
+      if (e.key === 'ArrowRight' && e.target.tagName !== 'INPUT') {
+        playNext();
+      }
+      if (e.key === 'ArrowLeft' && e.target.tagName !== 'INPUT') {
+        playPrev();
+      }
     });
   }
 
-  // Start on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

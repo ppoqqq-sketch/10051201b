@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>10051201b - i'm cho | Official Artist Archive</title>
-  <meta name="description" content="10051201b-i'm cho의 공식 음악 & 사진 아카이브. 1·2·3집 전곡 36곡 미리듣기 및 가사, 네이버/구글 사진 블로그 수록.">
-  <meta property="og:title" content="10051201b - i'm cho | Official Artist Archive">
-  <meta property="og:description" content="빛이 나는 시간 · 여백 · 다른 하늘 같은 바람 — 36편의 음악과 사진 블로그">
-  <meta property="og:image" content="media/covers/master_album1.jpg">
+  <title>10051201b - i'm cho | Official Music & Photography Archive</title>
+  <meta name="description" content="10051201b-i'm cho의 공식 음악 & 사진 아카이브. 1·2·3집 36곡 감상과 은하(Daily Light)의 사진 작품 갤러리.">
+  <meta property="og:title" content="10051201b - i'm cho | Official Archive">
+  <meta property="og:description" content="빛이 나는 시간 · 여백 · 다른 하늘 같은 바람 — 36편의 음악과 감성 사진 작품">
+  <meta property="og:image" content="media/photos/photo_02_sunset_church.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body oncontextmenu="return false;">
@@ -29,8 +29,9 @@
         </div>
       </div>
       <nav class="header-nav">
-        <a href="#albums" class="nav-link" data-i18n="nav_disco">디스코그래피</a>
-        <a href="#blogs" class="nav-link" data-i18n="nav_blogs">사진 블로그</a>
+        <a href="#showcase" class="nav-link" data-i18n="nav_disco">음악 감상</a>
+        <a href="#gallery" class="nav-link" data-i18n="nav_gallery">사진 갤러리</a>
+        <a href="#blogs" class="nav-link" data-i18n="nav_blogs">블로그</a>
         <a href="#story" class="nav-link" data-i18n="nav_story">스토리</a>
         <button id="btnOpenContact" class="nav-link btn-link" data-i18n="nav_contact">문의하기</button>
 
@@ -59,20 +60,10 @@
       <h2 class="hero-title" id="heroTitle">삶의 쉼표가 되는 <span>36편의 노래</span></h2>
       <p class="hero-desc" id="heroDesc">
         1년 6개월 동안 축적된 삶의 고뇌와 시(詩) 같은 언어들이 선율을 입었습니다.<br>
-        자극과 소음으로 지친 하루 끝, 언제든 찾아와 편안히 머물다 가실 수 있는 따뜻한 쉼터입니다.
+        곡 하나하나에 담긴 온기를 한 곡씩 집중해서 감상해 보세요.
       </p>
-      <div class="hero-actions">
-        <button id="btnPlayAll" class="btn-primary">
-          <svg viewBox="0 0 24 24" class="svg-icon"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-          <span data-i18n="btn_play_all">전곡 미리듣기</span>
-        </button>
-        <button id="btnShuffleAll" class="btn-secondary">
-          <svg viewBox="0 0 24 24" class="svg-icon"><path fill="currentColor" d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
-          <span data-i18n="btn_shuffle_all">랜덤 재생</span>
-        </button>
-      </div>
-
-      <!-- Quick Metrics Ribbon -->
+      
+      <!-- Metrics Ribbon -->
       <div class="metrics-ribbon">
         <div class="metric-item">
           <span class="m-val">3</span>
@@ -85,8 +76,8 @@
         </div>
         <div class="metric-div"></div>
         <div class="metric-item">
-          <span class="m-val">Preview</span>
-          <span class="m-lbl" data-i18n="metric_preview">60초 미리듣기 지원</span>
+          <span class="m-val">60s</span>
+          <span class="m-lbl" data-i18n="metric_preview">하나씩 듣는 미리듣기</span>
         </div>
         <div class="metric-div"></div>
         <div class="metric-item">
@@ -96,51 +87,119 @@
       </div>
     </section>
 
-    <!-- Discography Section -->
-    <section id="albums" class="discography-section">
+    <!-- Single Track Showcase Section (하나씩 보여주기) -->
+    <section id="showcase" class="showcase-section">
       <div class="section-header">
         <div class="section-title-wrap">
-          <h3 class="section-title" data-i18n="disco_title">디스코그래피</h3>
-          <span class="section-subtitle" data-i18n="disco_sub">Discography & Tracklist</span>
+          <div class="section-badge" data-i18n="showcase_badge">FEATURED TRACK</div>
+          <h3 class="section-title" data-i18n="showcase_title">한 곡씩 집중 감상하기</h3>
+          <span class="section-subtitle" data-i18n="showcase_sub">Track by Track Spotlight Player</span>
         </div>
-        
-        <!-- Album Tabs -->
+
+        <!-- Album Selector Tabs -->
         <div class="album-tabs">
           <button class="tab-btn active" data-tab="all" data-i18n="tab_all">전체 (36곡)</button>
-          <button class="tab-btn" data-tab="album1" data-i18n="tab_a1">1집 : 빛이 나는 시간 (21곡)</button>
-          <button class="tab-btn" data-tab="album2" data-i18n="tab_a2">2집 : 여백 (13곡)</button>
-          <button class="tab-btn" data-tab="album3" data-i18n="tab_a3">3집 : 다른 하늘, 같은 바람 (2곡)</button>
+          <button class="tab-btn" data-tab="album1" data-i18n="tab_a1">1집 : 빛이 나는 시간 (21)</button>
+          <button class="tab-btn" data-tab="album2" data-i18n="tab_a2">2집 : 여백 (13)</button>
+          <button class="tab-btn" data-tab="album3" data-i18n="tab_a3">3집 : 다른 하늘 (2)</button>
         </div>
       </div>
 
-      <!-- Search & Filter Bar -->
-      <div class="search-filter-bar">
-        <div class="search-input-wrap">
-          <svg viewBox="0 0 24 24" class="svg-icon search-icon"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-          <input type="text" id="trackSearchInput" placeholder="곡 제목, 가사, 장르 검색 (예: 박하사탕, 포크, 쉼터)...">
-          <button id="clearSearchBtn" class="btn-clear-search">&times;</button>
+      <!-- Spotlight Player Card -->
+      <div class="spotlight-card" id="spotlightCard">
+        <!-- Prev Button -->
+        <button id="btnSpotPrev" class="spot-nav-btn spot-prev" title="이전 곡 (Prev)">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+
+        <!-- Spotlight Content -->
+        <div class="spotlight-body">
+          <div class="spot-cover-wrap">
+            <img id="spotCover" src="media/covers/master_album1.jpg" alt="Cover" class="spot-cover">
+            <div class="spot-cover-badge" id="spotTrackNum">Track 1 / 36</div>
+            <button id="btnSpotPlay" class="spot-play-overlay-btn" title="재생 / 일시정지">
+              <svg id="svgSpotPlay" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              <svg id="svgSpotPause" viewBox="0 0 24 24" style="display:none;"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+          </div>
+
+          <div class="spot-details">
+            <div class="spot-meta-tags">
+              <span id="spotAlbumTag" class="tag-album">1집: 빛이 나는 시간</span>
+              <span id="spotGenreTag" class="tag-genre">Acoustic Folk</span>
+              <span class="tag-preview">60s Preview</span>
+            </div>
+
+            <h3 id="spotTitleKr" class="spot-title-kr">곡 제목</h3>
+            <h4 id="spotTitleEn" class="spot-title-en">English Title</h4>
+
+            <!-- Scrubber on Card -->
+            <div class="spot-scrubber-wrap">
+              <div class="spot-time"><span id="spotCurrentTime">0:00</span> / 1:00</div>
+              <div class="spot-progress-bar" id="spotProgressBar">
+                <div class="spot-progress-fill" id="spotProgressFill"></div>
+              </div>
+            </div>
+
+            <!-- Lyrics Teaser -->
+            <div class="spot-lyrics-teaser">
+              <div class="lyrics-teaser-header">
+                <span class="teaser-label" data-i18n="lyrics_excerpt">가사 발췌</span>
+                <button id="btnSpotViewLyrics" class="btn-teaser-more" data-i18n="btn_full_lyrics">전체 가사 보기 →</button>
+              </div>
+              <p id="spotLyricsPreview" class="teaser-text">가사를 불러오는 중입니다...</p>
+            </div>
+
+            <!-- Spotlight Action Buttons -->
+            <div class="spot-actions">
+              <a href="https://open.spotify.com/search/10051201b" target="_blank" rel="noopener" class="btn-ext btn-spotify">
+                <span>Spotify 전곡 감상</span>
+              </a>
+              <a href="https://www.youtube.com/results?search_query=10051201b" target="_blank" rel="noopener" class="btn-ext btn-youtube">
+                <span>YouTube 전곡 감상</span>
+              </a>
+            </div>
+          </div>
         </div>
-        <div id="searchResultCount" class="search-count">총 36곡</div>
+
+        <!-- Next Button -->
+        <button id="btnSpotNext" class="spot-nav-btn spot-next" title="다음 곡 (Next)">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
       </div>
 
-      <!-- Preview Notice Pill -->
-      <div class="preview-notice-pill">
-        <span class="p-dot"></span>
-        <span data-i18n="preview_notice">홈페이지에서는 60초 미리듣기가 제공되며, 전곡 고음질 감상은 Spotify 및 YouTube에서 즐기실 수 있습니다.</span>
-      </div>
-
-      <!-- Track List Grid -->
-      <div id="tracksGrid" class="tracks-grid">
-        <!-- Rendered dynamically via JavaScript -->
+      <!-- Quick Track Drawer / Thumb Strip (빠른 곡 넘겨보기 스트립) -->
+      <div class="track-strip-wrap">
+        <div class="strip-header">
+          <span class="strip-label" data-i18n="strip_label">전곡 넘겨보기 (클릭 시 바로 이동)</span>
+          <span id="stripCount" class="strip-count">1 / 36</span>
+        </div>
+        <div class="track-thumb-strip" id="trackThumbStrip">
+          <!-- Rendered via JS -->
+        </div>
       </div>
     </section>
 
-    <!-- Photo Blogs Section (New!) -->
+    <!-- Photo Gallery Section (작품 사진 갤러리) -->
+    <section id="gallery" class="gallery-section">
+      <div class="section-header text-center mb-30">
+        <div class="section-badge" data-i18n="gallery_badge">FINE ART PHOTOGRAPHY</div>
+        <h3 class="section-title" data-i18n="gallery_title">은하(Daily Light)의 사진 작품 갤러리</h3>
+        <span class="section-subtitle" data-i18n="gallery_sub">빛이 머무는 길목과 계절의 시선을 담아낸 오리지널 사진 작품들</span>
+      </div>
+
+      <!-- Photography Grid -->
+      <div class="photo-gallery-grid" id="photoGalleryGrid">
+        <!-- Rendered via JS from data/photos.json -->
+      </div>
+    </section>
+
+    <!-- Photo Blogs Direct Links Section -->
     <section id="blogs" class="blogs-section">
       <div class="section-title-wrap text-center mb-30">
-        <div class="section-badge" data-i18n="blog_badge">PHOTO ARCHIVE</div>
-        <h3 class="section-title" data-i18n="blog_title">사진 블로그 & 에세이</h3>
-        <span class="section-subtitle" data-i18n="blog_sub">순간의 빛과 시선을 담아내는 아티스트의 사진 공간</span>
+        <div class="section-badge" data-i18n="blog_badge">OFFICIAL BLOGS</div>
+        <h3 class="section-title" data-i18n="blog_title">공식 사진 블로그</h3>
+        <span class="section-subtitle" data-i18n="blog_sub">더 많은 사진과 서정적인 일상의 이야기들을 만나보세요</span>
       </div>
 
       <div class="blogs-grid">
@@ -153,7 +212,7 @@
           <h4 class="blog-name">은하의 기록 (Daily Light)</h4>
           <p class="blog-desc" data-i18n="naver_desc">
             일상의 따스한 빛과 소박한 시선을 기록하는 한국어 감성 사진 블로그입니다.<br>
-            계절이 머무는 길목과 지나쳐간 온기들을 사진으로 나눕니다.
+            계절이 머무는 길목과 지나쳐간 온기들을 사진과 에세이로 나눕니다.
           </p>
           <div class="blog-btn-wrap">
             <span class="btn-blog">
@@ -162,8 +221,8 @@
           </div>
         </a>
 
-        <!-- English Google Blogger Card -->
-        <a href="https://www.blogger.com/u/2/blog/posts/1448544211517608010" target="_blank" rel="noopener" class="blog-card blog-google">
+        <!-- English Google Blogger Card (Updated URL!) -->
+        <a href="https://dailylight369.blogspot.com/" target="_blank" rel="noopener" class="blog-card blog-google">
           <div class="blog-card-header">
             <span class="blog-platform-tag google-tag">GOOGLE BLOGGER 🇺🇸</span>
             <span class="blog-lang-tag">English Blog</span>
@@ -175,7 +234,7 @@
           </p>
           <div class="blog-btn-wrap">
             <span class="btn-blog">
-              <span data-i18n="btn_visit_google">Visit English Blog</span> →
+              <span data-i18n="btn_visit_google">Visit English Blog (dailylight369.blogspot.com)</span> →
             </span>
           </div>
         </a>
@@ -198,7 +257,7 @@
           </p>
           <p>
             <strong>"내가 평생 곁에 두고 듣고 싶은 음악"</strong>을 향한 집념이 
-            결국 36편의 오리지널 앨범으로 피어났고, 오늘날 전 세계 리스너들과 나누는 쉼터가 되었습니다.
+            결국 36편의 오리지널 앨범으로 피어났고, 오늘날 전 세계 리스너들과 나누는 쉼터가 되었습니다.<br>
             잠시 쉬어가세요. 당신의 모든 시간은 그 자체로 빛이 납니다.
           </p>
         </div>
@@ -221,11 +280,13 @@
           <span class="f-dot">•</span>
           <a href="https://blog.naver.com/dailylight369" target="_blank" rel="noopener">Naver Blog</a>
           <span class="f-dot">•</span>
+          <a href="https://dailylight369.blogspot.com/" target="_blank" rel="noopener">Blogger</a>
+          <span class="f-dot">•</span>
           <a href="https://open.spotify.com/search/10051201b" target="_blank" rel="noopener">Spotify</a>
           <span class="f-dot">•</span>
           <a href="https://www.youtube.com/results?search_query=10051201b" target="_blank" rel="noopener">YouTube</a>
           <span class="f-dot">•</span>
-          <a href="#albums">Top ↑</a>
+          <a href="#showcase">Top ↑</a>
         </div>
       </div>
     </footer>
@@ -233,7 +294,6 @@
 
   <!-- Persistent Bottom Audio Player Bar -->
   <div id="playerBar" class="player-bar">
-    <!-- Progress Bar (Full width on top of player) -->
     <div class="progress-container" id="progressContainer">
       <div class="progress-bar-bg">
         <div class="progress-bar-fill" id="progressBarFill"></div>
@@ -242,20 +302,18 @@
     </div>
 
     <div class="player-content">
-      <!-- Left: Track Meta -->
       <div class="player-meta">
         <img id="playerCover" src="media/covers/master_album1.jpg" alt="Cover" class="player-thumb">
         <div class="player-text">
           <div id="playerTitle" class="player-title">재생할 곡을 선택하세요</div>
           <div id="playerSub" class="player-artist">10051201b-i'm cho</div>
         </div>
-        <span class="preview-mode-tag" title="60초 미리듣기">60s Preview</span>
+        <span class="preview-mode-tag">60s Preview</span>
         <button id="btnOpenLyrics" class="btn-icon btn-lyrics-pill" title="가사 보기" data-i18n="btn_lyrics">
           가사
         </button>
       </div>
 
-      <!-- Center: Controls & Times -->
       <div class="player-controls-wrap">
         <div class="player-buttons">
           <button id="btnShuffle" class="btn-icon" title="셔플 (랜덤 재생)">
@@ -280,9 +338,7 @@
         </div>
       </div>
 
-      <!-- Right: Visualizer & Volume -->
       <div class="player-extras">
-        <!-- Mini Equalizer Visualizer -->
         <div id="visualizer" class="mini-equalizer">
           <span class="bar bar-1"></span>
           <span class="bar bar-2"></span>
@@ -318,6 +374,19 @@
       <div class="lyrics-body">
         <div id="lyricsTextKr" class="lyrics-text"></div>
         <div id="lyricsTextEn" class="lyrics-text" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo Lightbox Modal (사진 크게 보기) -->
+  <div id="photoLightboxModal" class="lyrics-modal">
+    <div class="lyrics-backdrop" id="photoLightboxBackdrop"></div>
+    <div class="lightbox-card">
+      <button id="btnCloseLightbox" class="btn-close-lightbox">&times;</button>
+      <img id="lightboxImg" src="" alt="Artwork" class="lightbox-img">
+      <div class="lightbox-caption">
+        <h4 id="lightboxTitle" class="lb-title">작품 제목</h4>
+        <span id="lightboxLocation" class="lb-loc">촬영 장소</span>
       </div>
     </div>
   </div>
