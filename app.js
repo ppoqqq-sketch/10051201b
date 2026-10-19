@@ -247,7 +247,14 @@
     copyEmailText: document.getElementById('copyEmailText'),
     btnOpenGmail: document.getElementById('btnOpenGmail'),
     btnOpenNaverMail: document.getElementById('btnOpenNaverMail'),
-    btnResetContact: document.getElementById('btnResetContact')
+    btnResetContact: document.getElementById('btnResetContact'),
+
+    // Secret Lore Modal
+    secretLoreModal: document.getElementById('secretLoreModal'),
+    secretLoreBackdrop: document.getElementById('secretLoreBackdrop'),
+    btnCloseSecretLore: document.getElementById('btnCloseSecretLore'),
+    btnOpenSecretLore: document.getElementById('btnOpenSecretLore'),
+    btnFooterSecretLore: document.getElementById('btnFooterSecretLore')
   };
 
   state.audio = el.audio;
@@ -565,6 +572,21 @@
     document.body.style.overflow = '';
   }
 
+  // Secret Lore Modal
+  function openSecretLoreModal() {
+    if (el.secretLoreModal) {
+      el.secretLoreModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeSecretLoreModal() {
+    if (el.secretLoreModal) {
+      el.secretLoreModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
   function handleContactSubmit(e) {
     e.preventDefault();
     const name = el.contactName.value.trim();
@@ -805,12 +827,19 @@
       el.spotCover.addEventListener('click', togglePlay);
     }
 
+    // Secret Lore Modal Event Listeners
+    if (el.btnOpenSecretLore) el.btnOpenSecretLore.addEventListener('click', openSecretLoreModal);
+    if (el.btnFooterSecretLore) el.btnFooterSecretLore.addEventListener('click', openSecretLoreModal);
+    if (el.btnCloseSecretLore) el.btnCloseSecretLore.addEventListener('click', closeSecretLoreModal);
+    if (el.secretLoreBackdrop) el.secretLoreBackdrop.addEventListener('click', closeSecretLoreModal);
+
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeLyricsModal();
         closeLightbox();
         closeContactModal();
+        closeSecretLoreModal();
       }
       if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
         e.preventDefault();
