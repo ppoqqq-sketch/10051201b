@@ -38,11 +38,7 @@
       nav_blogs: '블로그',
       nav_story: '스토리',
       nav_contact: '문의하기',
-      nav_saatchi: '🎨 작품 소장 (Saatchi Art)',
-      saatchi_badge: 'FINE ART COLLECTION ON SAATCHI ART',
-      saatchi_title: '은하(Inje Cho)의 오리지널 사진 작품 소장하기',
-      saatchi_desc: '세계적인 온라인 파인아트 갤러리 <strong>Saatchi Art(사치아트)</strong>에서 엄선된 원본 사진 작품과 고해상도 리미티드 에디션 아트 프린트를 감상하고 공식 소장하실 수 있습니다.',
-      saatchi_btn: 'Saatchi Art 갤러리 방문하기',
+      nav_saatchi: '작품 소장',
       hero_badge: 'OFFICIAL ARTIST ARCHIVE',
       hero_title: '삶의 쉼표가 되는 <span>36편의 노래</span>',
       hero_desc: '1년 6개월 동안 축적된 삶의 고뇌와 시(詩) 같은 언어들이 선율을 입었습니다.<br>곡 하나하나에 담긴 온기를 한 곡씩 집중해서 감상해 보세요.',
@@ -63,13 +59,17 @@
       gallery_badge: 'FINE ART PHOTOGRAPHY',
       gallery_title: '은하(Daily Light)의 사진 작품 갤러리',
       gallery_sub: '빛이 머무는 길목과 계절의 시선을 담아낸 오리지널 사진 작품들',
-      blog_badge: 'OFFICIAL BLOGS',
-      blog_title: '공식 사진 블로그',
-      blog_sub: '더 많은 사진과 서정적인 일상의 이야기들을 만나보세요',
+      blog_badge: 'OFFICIAL CHANNELS & BLOGS',
+      blog_title: '공식 사진 블로그 & 갤러리 샵',
+      blog_sub: '더 많은 사진과 서정적인 일상의 이야기, 오리지널 작품을 만나보세요',
       naver_desc: '일상의 따스한 빛과 소박한 시선을 기록하는 한국어 감성 사진 블로그입니다.<br>계절이 머무는 길목과 지나쳐간 온기들을 사진과 에세이로 나눕니다.',
       google_desc: 'An English photo diary capturing quiet landscapes, silent moments, and reflections.<br>Visual essays crafted in parallel with musical journeys.',
+      saatchi_card_desc: '세계적인 온라인 파인아트 갤러리 Saatchi Art에서 은하(Inje Cho)의 엄선된 오리지널 사진 작품과 고해상도 리미티드 에디션 프린트를 공식 소장하실 수 있습니다.',
       btn_visit_naver: '네이버 블로그 방문하기',
       btn_visit_google: 'Visit English Blog (dailylight369.blogspot.com)',
+      btn_visit_saatchi: '사치아트 갤러리 방문하기',
+      secret_title: '🔐 [비밀 문서 : 상처를 빛으로 바꾼 시간]',
+      secret_sub: "10051201b-i'm cho × AI (Argon 4.0 & Gemini Flash 3.8) Secret Archive",
       story_section_badge: 'CREATIVE STORIES',
       story_section_title: '음악과 사진, 기록의 이야기',
       story_section_sub: "10051201b - i'm cho의 창작 세계와 시선",
@@ -107,11 +107,7 @@
       nav_blogs: 'Blogs',
       nav_story: 'Story',
       nav_contact: 'Contact',
-      nav_saatchi: '🎨 Artworks (Saatchi Art)',
-      saatchi_badge: 'FINE ART COLLECTION ON SAATCHI ART',
-      saatchi_title: 'Collect Original Fine Art Prints by Inje Cho',
-      saatchi_desc: 'Explore and acquire curated original photography and high-resolution limited edition fine art prints exclusively on the world-renowned gallery <strong>Saatchi Art</strong>.',
-      saatchi_btn: 'Visit Saatchi Art Gallery',
+      nav_saatchi: 'Art Shop',
       hero_badge: 'OFFICIAL ARTIST ARCHIVE',
       hero_title: 'Restful Moments Through <span>36 Original Tracks</span>',
       hero_desc: 'One and a half years of quiet reflection and poetic contemplation transformed into soothing melodies.<br>Explore each track one by one with heartfelt warmth.',
@@ -132,13 +128,17 @@
       gallery_badge: 'FINE ART PHOTOGRAPHY',
       gallery_title: 'Daily Light Fine Art Photography',
       gallery_sub: 'Visual poetry capturing seasonal light, quiet horizons, and lingering stillness',
-      blog_badge: 'OFFICIAL BLOGS',
-      blog_title: 'Official Photo Blogs',
-      blog_sub: 'Explore more photography and lyrical essays',
+      blog_badge: 'OFFICIAL CHANNELS & BLOGS',
+      blog_title: 'Official Photo Blogs & Gallery Shop',
+      blog_sub: 'Explore curated photography, lyrical essays, and original art collections',
       naver_desc: 'Korean photo journal chronicling gentle light, quiet roads, and lingering warmth.<br>A poetic reflection of seasons and daily light.',
       google_desc: 'An English photo diary capturing quiet landscapes, silent moments, and reflections.<br>Visual essays crafted in parallel with musical journeys.',
+      saatchi_card_desc: 'Acquire curated original photography and high-resolution limited edition fine art prints exclusively through the world-renowned Saatchi Art gallery.',
       btn_visit_naver: 'Visit Naver Photo Blog',
       btn_visit_google: 'Visit English Blog (dailylight369.blogspot.com)',
+      btn_visit_saatchi: 'Visit Saatchi Art Gallery',
+      secret_title: '🔐 [TOP SECRET LORE : Transmuting Ache into Light]',
+      secret_sub: "10051201b-i'm cho × AI (Argon 4.0 & Gemini Flash 3.8) Secret Archive",
       story_section_badge: 'CREATIVE STORIES',
       story_section_title: 'Chronicles of Sound & Light',
       story_section_sub: "The creative journey and vision of 10051201b - i'm cho",
@@ -331,6 +331,13 @@
 
     el.heroTitle.innerHTML = t.hero_title;
     el.heroDesc.innerHTML = t.hero_desc;
+
+    // Toggle Secret Lore Easter Egg Language
+    const isEn = lang === 'en';
+    const koSec = document.getElementById('secretLoreContentKo');
+    const enSec = document.getElementById('secretLoreContentEn');
+    if (koSec) koSec.style.display = isEn ? 'none' : 'block';
+    if (enSec) enSec.style.display = isEn ? 'block' : 'none';
 
     updateSpotlightDisplay();
     renderTrackThumbStrip();
