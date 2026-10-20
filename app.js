@@ -342,6 +342,10 @@
     updateSpotlightDisplay();
     renderTrackThumbStrip();
     renderPhotoGallery();
+
+    if (el.lyricsModal && el.lyricsModal.classList.contains('active') && state.currentLyricsTrack) {
+      openLyricsModal(state.currentLyricsTrack);
+    }
   }
 
   // Render Track Thumb Strip below Spotlight
@@ -557,16 +561,26 @@
   // Lyrics Modal
   function openLyricsModal(track) {
     state.currentLyricsTrack = track;
-    el.lyricsModalTitle.textContent = track.title_kr;
-    el.lyricsModalSub.textContent = `${track.title_en ? track.title_en + ' • ' : ''}${track.album_title}`;
+    const isEn = state.currentLang === 'en';
+
+    if (isEn) {
+      el.lyricsModalTitle.textContent = track.title_en || track.title_kr;
+      el.lyricsModalSub.textContent = `${track.title_kr ? track.title_kr + ' • ' : ''}${track.album_title}`;
+      el.btnTabEn.classList.add('active');
+      el.btnTabKr.classList.remove('active');
+      el.lyricsTextEn.style.display = 'block';
+      el.lyricsTextKr.style.display = 'none';
+    } else {
+      el.lyricsModalTitle.textContent = track.title_kr;
+      el.lyricsModalSub.textContent = `${track.title_en ? track.title_en + ' • ' : ''}${track.album_title}`;
+      el.btnTabKr.classList.add('active');
+      el.btnTabEn.classList.remove('active');
+      el.lyricsTextKr.style.display = 'block';
+      el.lyricsTextEn.style.display = 'none';
+    }
 
     el.lyricsTextKr.textContent = track.lyrics_kr || '(등록된 한국어 가사가 없습니다)';
     el.lyricsTextEn.textContent = track.lyrics_en || '(No English lyrics available)';
-
-    el.btnTabKr.classList.add('active');
-    el.btnTabEn.classList.remove('active');
-    el.lyricsTextKr.style.display = 'block';
-    el.lyricsTextEn.style.display = 'none';
 
     el.lyricsModal.classList.add('active');
     document.body.style.overflow = 'hidden';
