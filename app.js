@@ -857,16 +857,42 @@
       el.spotCover.addEventListener('click', togglePlay);
     }
 
-    // Secret Lore Modal Event Listeners (Hidden Easter Egg on 'i\'m cho')
+    // Secret Lore Modal Event Listeners (Hidden Easter Egg on 'i\'m cho' - 3 Clicks Required)
     if (el.brandSub) {
+      let secretClickCount = 0;
+      let secretClickTimer = null;
+
       el.brandSub.addEventListener('click', (e) => {
         e.preventDefault();
-        openSecretLoreModal();
+        secretClickCount++;
+        clearTimeout(secretClickTimer);
+
+        if (secretClickCount >= 3) {
+          secretClickCount = 0;
+          openSecretLoreModal();
+        } else {
+          secretClickTimer = setTimeout(() => {
+            secretClickCount = 0;
+          }, 1500);
+        }
       });
+
+      let secretKeyCount = 0;
+      let secretKeyTimer = null;
       el.brandSub.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          openSecretLoreModal();
+          secretKeyCount++;
+          clearTimeout(secretKeyTimer);
+
+          if (secretKeyCount >= 3) {
+            secretKeyCount = 0;
+            openSecretLoreModal();
+          } else {
+            secretKeyTimer = setTimeout(() => {
+              secretKeyCount = 0;
+            }, 1500);
+          }
         }
       });
     }

@@ -1510,15 +1510,15 @@ body {
    Easter Egg & Saatchi Art Styles
    ========================================================================== */
 .brand-sub.secret-trigger {
-  cursor: pointer;
+  cursor: default !important;
   transition: all 0.25s ease;
   display: inline-block;
   user-select: none;
 }
 .brand-sub.secret-trigger:hover {
+  cursor: default !important;
   color: #f6e05e !important;
-  text-shadow: 0 0 10px rgba(246, 224, 94, 0.6);
-  transform: scale(1.06);
+  text-shadow: 0 0 8px rgba(246, 224, 94, 0.5);
 }
 
 .btn-saatchi {
