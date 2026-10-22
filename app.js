@@ -982,10 +982,18 @@
     if (el.brandName) {
       let cosmicRightClickCount = 0;
       let cosmicRightClickTimer = null;
+      let lastRightClickTime = 0;
 
-      el.brandName.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+      function handleCosmicRightClick(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        const now = Date.now();
+        // Prevent double counting if both pointer/mouse and contextmenu fire
+        if (now - lastRightClickTime < 60) return;
+        lastRightClickTime = now;
+
         cosmicRightClickCount++;
         clearTimeout(cosmicRightClickTimer);
 
@@ -995,9 +1003,20 @@
           return;
         }
 
+        // Reset if user pauses clicking for more than 5 seconds
         cosmicRightClickTimer = setTimeout(() => {
           cosmicRightClickCount = 0;
-        }, 3500);
+        }, 5000);
+      }
+
+      // Standard contextmenu event (right-click / Mac two-finger tap)
+      el.brandName.addEventListener('contextmenu', handleCosmicRightClick);
+
+      // Mouse/pointer event support for right-click button or Mac Ctrl+Click
+      el.brandName.addEventListener('mousedown', (e) => {
+        if (e.button === 2 || (e.button === 0 && e.ctrlKey)) {
+          handleCosmicRightClick(e);
+        }
       });
     }
     if (el.btnOpenSecretLore) el.btnOpenSecretLore.addEventListener('click', openSecretLoreModal);
