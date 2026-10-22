@@ -40,7 +40,7 @@
       nav_contact: '문의하기',
       nav_saatchi: '작품 소장',
       hero_badge: 'OFFICIAL ARTIST ARCHIVE',
-      hero_title: '삶의 쉼표가 되는 <span>36편의 노래</span>',
+      hero_title: '삶의 쉼표가 되는 <span>67편의 노래</span>',
       hero_desc: '1년 6개월 동안 축적된 삶의 고뇌와 시(詩) 같은 언어들이 선율을 입었습니다.<br>곡 하나하나에 담긴 온기를 한 곡씩 집중해서 감상해 보세요.',
       metric_albums: '정규 앨범',
       metric_tracks: '오리지널 트랙',
@@ -49,10 +49,12 @@
       showcase_badge: 'FEATURED TRACK',
       showcase_title: '한 곡씩 집중 감상하기',
       showcase_sub: 'Track by Track Spotlight Player',
-      tab_all: '전체 (36곡)',
+      tab_all: '전체 (67곡)',
       tab_a1: '1집 : 빛이 나는 시간 (21)',
       tab_a2: '2집 : 여백 (13)',
       tab_a3: '3집 : 다른 하늘 (2)',
+      tab_a4: '4집 : 휴식의 멜로디 (12)',
+      tab_a5: '5집 : 우리의 시간 (19)',
       strip_label: '전곡 넘겨보기 (클릭 시 바로 이동)',
       lyrics_excerpt: '가사 발췌',
       btn_full_lyrics: '전체 가사 보기 →',
@@ -77,7 +79,7 @@
       story_title: '"1년 6개월의 시간이 음악이 되기까지"',
       story_p1: '처음부터 음원을 발매하겠다고 마음먹고 시작한 작업은 아니었습니다.<br>각자의 자리에서 삶을 버텨내며 적어 내려갔던 1년 6개월간의 고뇌와 관찰, 사람의 온기를 담은 시(詩) 같은 언어들이 차곡차곡 쌓여 있었습니다.',
       story_p2: '이 소중한 기록들에 선율을 입히기 위해, 저는 가장 현대적인 예술적 파트너십을 선택했습니다.<br>생각의 깊이와 서정적인 노랫말을 다듬어준 인공지능 파트너 <strong>Gemini Flash(제미니 플래시)</strong>와 <strong>Argon(아르곤)</strong>이 기획과 사유의 여정을 함께했고, 감성적인 사운드스케이프를 현실화하는 차세대 작곡 엔진 <strong>SUNO(수노)</strong>를 활용하여 멜로디와 편곡을 직조해 나갔습니다.',
-      story_p3: '<strong>"내가 평생 곁에 두고 듣고 싶은 음악, 언제 틀어도 귀가 피로하지 않은 따스한 쉼표."</strong><br>인간의 고유한 감정과 첨단 AI 기술의 정밀한 조화가 빚어낸 36편의 오리지널 앨범이 당신의 모든 순간에 작은 위로와 빛이 되기를 소망합니다.',
+      story_p3: '<strong>"내가 평생 곁에 두고 듣고 싶은 음악, 언제 틀어도 귀가 피로하지 않은 따스한 쉼표."</strong><br>인간의 고유한 감정과 첨단 AI 기술의 정밀한 조화가 빚어낸 67편의 오리지널 앨범이 당신의 모든 순간에 작은 위로와 빛이 되기를 소망합니다.',
       story_sig_music: 'Total Producer (with Gemini Flash · Argon · SUNO)',
       story_p_badge: 'PHOTOGRAPHY STORY 📸',
       photo_story_title: '"빛이 스며드는 순간을 기록합니다"',
@@ -114,7 +116,7 @@
       nav_contact: 'Contact',
       nav_saatchi: 'Art Shop',
       hero_badge: 'OFFICIAL ARTIST ARCHIVE',
-      hero_title: 'Restful Moments Through <span>36 Original Tracks</span>',
+      hero_title: 'Restful Moments Through <span>67 Original Tracks</span>',
       hero_desc: 'One and a half years of quiet reflection and poetic contemplation transformed into soothing melodies.<br>Explore each track one by one with heartfelt warmth.',
       metric_albums: 'Studio Albums',
       metric_tracks: 'Original Tracks',
@@ -123,10 +125,12 @@
       showcase_badge: 'FEATURED TRACK',
       showcase_title: 'Track by Track Showcase',
       showcase_sub: 'Focused spotlight listening experience',
-      tab_all: 'All (36 Tracks)',
+      tab_all: 'All (67 Tracks)',
       tab_a1: '1st : Shining Moment (21)',
       tab_a2: '2nd : The Blank Space (13)',
       tab_a3: '3rd : Same Wind (2)',
+      tab_a4: '4th : Melody of Rest (12)',
+      tab_a5: '5th : Our Time (19)',
       strip_label: 'Browse Tracks (Click to jump)',
       lyrics_excerpt: 'Lyrics Excerpt',
       btn_full_lyrics: 'View Full Lyrics →',
@@ -151,7 +155,7 @@
       story_title: '"How 1.5 Years of Solitude Became Music"',
       story_p1: 'This journey did not begin with commercial ambitions.<br>It started as an accumulated chronicle of solitary thoughts, observation of people, and human warmth written over 18 quiet months.',
       story_p2: 'To breathe melody into these personal chronicles, I chose a progressive creative partnership between human emotion and artificial intelligence.<br>AI companions <strong>Gemini Flash</strong> and <strong>Argon</strong> journeyed alongside me to refine the philosophical depth, lyrical concepts, and narrative direction, while the cutting-edge musical engine <strong>SUNO</strong> brought the melodies and harmonic arrangements to life.',
-      story_p3: '<strong>"Music I want to keep beside me for a lifetime—a gentle pause that never fatigues the ears."</strong><br>Born from the intimate synergy of human contemplation and generative AI craftsmanship, may these 36 original tracks bring a quiet moment of light and comfort to your day.',
+      story_p3: '<strong>"Music I want to keep beside me for a lifetime—a gentle pause that never fatigues the ears."</strong><br>Born from the intimate synergy of human contemplation and generative AI craftsmanship, may these 67 original tracks bring a quiet moment of light and comfort to your day.',
       story_sig_music: 'Total Producer (with Gemini Flash · Argon · SUNO)',
       story_p_badge: 'PHOTOGRAPHY STORY 📸',
       photo_story_title: '"Recording Moments Where Light Gently Seeps In"',
@@ -570,14 +574,10 @@
   // Filter Tabs
   function applyTabFilter(tabKey) {
     state.activeTab = tabKey;
-    if (tabKey === 'album1') {
-      state.currentFilteredList = state.allTracks.filter(t => t.album_id === 'album1');
-    } else if (tabKey === 'album2') {
-      state.currentFilteredList = state.allTracks.filter(t => t.album_id === 'album2');
-    } else if (tabKey === 'album3') {
-      state.currentFilteredList = state.allTracks.filter(t => t.album_id === 'album3');
-    } else {
+    if (tabKey === 'all') {
       state.currentFilteredList = [...state.allTracks];
+    } else {
+      state.currentFilteredList = state.allTracks.filter(t => t.album_id === tabKey);
     }
 
     renderTrackThumbStrip();
