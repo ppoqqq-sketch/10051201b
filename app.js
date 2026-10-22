@@ -270,6 +270,7 @@
     btnResetContact: document.getElementById('btnResetContact'),
 
     // Secret Lore Modal (Easter Egg)
+    brandName: document.getElementById('brandName'),
     brandSub: document.getElementById('brandSub'),
     secretLoreModal: document.getElementById('secretLoreModal'),
     secretLoreBackdrop: document.getElementById('secretLoreBackdrop'),
@@ -277,7 +278,7 @@
     btnOpenSecretLore: document.getElementById('btnOpenSecretLore'),
     btnFooterSecretLore: document.getElementById('btnFooterSecretLore'),
 
-    // Cosmic Easter Egg Modal (13 Clicks on i'm cho)
+    // Cosmic Easter Egg Modal (13 Right Clicks on 10051201b)
     cosmicModal: document.getElementById('cosmicModal'),
     cosmicBackdrop: document.getElementById('cosmicBackdrop'),
     btnCloseCosmic: document.getElementById('btnCloseCosmic'),
@@ -936,48 +937,67 @@
       el.spotCover.addEventListener('click', togglePlay);
     }
 
-    // Secret Lore & Cosmic Easter Egg on 'i\'m cho'
-    // 3 Clicks -> Studio Log / Confidential Archive
-    // 13 Clicks -> Galactic Civilization Development Corps (은하문명개발단)
+    // 1) Secret Lore Easter Egg on 'i\'m cho' (3 Clicks)
     if (el.brandSub) {
       let secretClickCount = 0;
-      let secretTimer = null;
-      let threeClickTimer = null;
+      let secretClickTimer = null;
 
-      function handleSecretTrigger(e) {
-        if (e) e.preventDefault();
+      el.brandSub.addEventListener('click', (e) => {
+        e.preventDefault();
         secretClickCount++;
-        clearTimeout(secretTimer);
-        clearTimeout(threeClickTimer);
+        clearTimeout(secretClickTimer);
 
-        if (secretClickCount >= 13) {
+        if (secretClickCount >= 3) {
           secretClickCount = 0;
-          closeSecretLoreModal();
+          openSecretLoreModal();
+        } else {
+          secretClickTimer = setTimeout(() => {
+            secretClickCount = 0;
+          }, 1500);
+        }
+      });
+
+      let secretKeyCount = 0;
+      let secretKeyTimer = null;
+      el.brandSub.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          secretKeyCount++;
+          clearTimeout(secretKeyTimer);
+
+          if (secretKeyCount >= 3) {
+            secretKeyCount = 0;
+            openSecretLoreModal();
+          } else {
+            secretKeyTimer = setTimeout(() => {
+              secretKeyCount = 0;
+            }, 1500);
+          }
+        }
+      });
+    }
+
+    // 2) Cosmic Easter Egg: 13 Right-Clicks on '10051201b' (은하문명개발단)
+    // Completely unstyled, no color change, secret discovery
+    if (el.brandName) {
+      let cosmicRightClickCount = 0;
+      let cosmicRightClickTimer = null;
+
+      el.brandName.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        cosmicRightClickCount++;
+        clearTimeout(cosmicRightClickTimer);
+
+        if (cosmicRightClickCount >= 13) {
+          cosmicRightClickCount = 0;
           openCosmicModal();
           return;
         }
 
-        if (secretClickCount === 3) {
-          // If clicks pause at 3, open Studio Log (3-click Easter Egg).
-          // If clicks continue rapidly toward 13, don't interrupt!
-          threeClickTimer = setTimeout(() => {
-            if (secretClickCount < 13 && secretClickCount >= 3) {
-              secretClickCount = 0;
-              openSecretLoreModal();
-            }
-          }, 450);
-        }
-
-        secretTimer = setTimeout(() => {
-          secretClickCount = 0;
-        }, 3000);
-      }
-
-      el.brandSub.addEventListener('click', handleSecretTrigger);
-      el.brandSub.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          handleSecretTrigger(e);
-        }
+        cosmicRightClickTimer = setTimeout(() => {
+          cosmicRightClickCount = 0;
+        }, 3500);
       });
     }
     if (el.btnOpenSecretLore) el.btnOpenSecretLore.addEventListener('click', openSecretLoreModal);
