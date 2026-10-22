@@ -657,6 +657,12 @@
   // Secret Lore Modal
   function openSecretLoreModal() {
     if (el.secretLoreModal) {
+      const isEn = state.currentLang === 'en';
+      const koSec = document.getElementById('secretLoreContentKo');
+      const enSec = document.getElementById('secretLoreContentEn');
+      if (koSec) koSec.style.display = isEn ? 'none' : 'block';
+      if (enSec) enSec.style.display = isEn ? 'block' : 'none';
+
       el.secretLoreModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -976,7 +982,7 @@
         } else {
           secretClickTimer = setTimeout(() => {
             secretClickCount = 0;
-          }, 1500);
+          }, 2500);
         }
       });
 

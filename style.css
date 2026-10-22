@@ -1237,6 +1237,7 @@ body {
 }
 .lyrics-card, .preview-end-card, .contact-card {
   position: relative;
+  z-index: 10;
   background: #141722;
   border: 1px solid var(--border-hover);
   border-radius: 24px;
@@ -1249,6 +1250,8 @@ body {
 .preview-end-card { width: 90%; max-width: 480px; padding: 36px 28px; text-align: center; }
 .contact-card { width: 90%; max-width: 520px; display: flex; flex-direction: column; }
 .secret-card { 
+  position: relative;
+  z-index: 10;
   width: 90%; 
   max-width: 680px; 
   max-height: 85vh; 
@@ -1258,6 +1261,9 @@ body {
   border: 1px solid rgba(212, 175, 55, 0.35);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.12);
   border-radius: 20px;
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .lyrics-modal.active .lyrics-card,
