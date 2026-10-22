@@ -297,10 +297,11 @@
   // Initialize App
   async function init() {
     try {
-      // Load Catalog & Photos in parallel
+      // Load Catalog & Photos in parallel (cache buster prevents stale cached data)
+      const cacheBuster = Date.now();
       const [catRes, photoRes] = await Promise.all([
-        fetch('data/catalog.json'),
-        fetch('data/photos.json')
+        fetch(`data/catalog.json?v=${cacheBuster}`),
+        fetch(`data/photos.json?v=${cacheBuster}`)
       ]);
 
       state.catalog = await catRes.json();
@@ -385,10 +386,26 @@
     }
   }
 
+  // Update Strip Counter (e.g. 1 / 12 or 1 / 67)
+  function updateStripCounter() {
+    if (!el.stripCount) return;
+    const list = state.currentFilteredList || state.allTracks;
+    const curTrack = state.allTracks[state.currentTrackIndex];
+    const filteredIdx = list.findIndex(t => t.id === curTrack?.id);
+    const displayNum = filteredIdx >= 0 ? filteredIdx + 1 : (state.currentTrackIndex + 1);
+    const totalNum = list.length || state.allTracks.length;
+    el.stripCount.textContent = `${displayNum} / ${totalNum}`;
+  }
+
   // Render Track Thumb Strip below Spotlight
   function renderTrackThumbStrip() {
-    const list = state.currentFilteredList;
-    el.stripCount.textContent = `${state.currentTrackIndex + 1} / ${state.allTracks.length}`;
+    const list = state.currentFilteredList || state.allTracks;
+    updateStripCounter();
+
+    if (!list || list.length === 0) {
+      el.trackThumbStrip.innerHTML = '<div style="padding: 16px 20px; color: var(--text-muted); font-size: 13px;">선택한 앨범의 트랙을 불러오는 중입니다...</div>';
+      return;
+    }
 
     el.trackThumbStrip.innerHTML = list.map((track) => {
       const isCur = state.allTracks[state.currentTrackIndex]?.id === track.id;
@@ -490,7 +507,7 @@
       }
     });
 
-    el.stripCount.textContent = `${state.currentTrackIndex + 1} / ${state.allTracks.length}`;
+    updateStripCounter();
   }
 
   // Select Track
