@@ -652,9 +652,15 @@
     }
   }
 
-  // Cosmic Easter Egg Modal (13 Clicks on i'm cho)
+  // Cosmic Easter Egg Modal (13 Right Clicks on 10051201b)
   function openCosmicModal() {
     if (el.cosmicModal) {
+      const isEn = state.currentLang === 'en';
+      const cosmicKo = document.getElementById('cosmicContentKo');
+      const cosmicEn = document.getElementById('cosmicContentEn');
+      if (cosmicKo) cosmicKo.style.display = isEn ? 'none' : 'block';
+      if (cosmicEn) cosmicEn.style.display = isEn ? 'block' : 'none';
+
       el.cosmicModal.classList.add('active');
       document.body.style.overflow = 'hidden';
       if (el.cosmicWishInput) {
