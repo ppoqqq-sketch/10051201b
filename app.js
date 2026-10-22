@@ -96,7 +96,13 @@
       direct_label: '또는 이메일 직접 복사:',
       btn_copy_email: '📋 이메일 주소 복사하기',
       msg_sent: '이메일 전송 준비가 완료되었습니다!',
-      msg_sent_sub: '메일 프로그램이 자동으로 열리지 않는 경우, 아래 웹메일 버튼을 누르시면 작성하신 내용 그대로 전송창이 열립니다.'
+      msg_sent_sub: '메일 프로그램이 자동으로 열리지 않는 경우, 아래 웹메일 버튼을 누르시면 작성하신 내용 그대로 전송창이 열립니다.',
+      cosmic_badge: '🛸 [DEEP SPACE BEACON // FREQ: 1005-1201]',
+      cosmic_title: '은하문명개발단 (Galactic Civilization Dev Corps)',
+      cosmic_sub: 'Transmission from Deep Space • Secret Frequency',
+      cosmic_wish_placeholder: '소원을 적어 우주로 전송하세요...',
+      cosmic_btn_transmit: '소원 전송',
+      cosmic_btn_close: '전송문 닫기'
     },
     en: {
       lang_btn: '한국어',
@@ -164,7 +170,13 @@
       direct_label: 'Or copy direct email:',
       btn_copy_email: '📋 Copy Email Address',
       msg_sent: 'Email Dispatch Initialized!',
-      msg_sent_sub: 'If your mail app did not open automatically, click the webmail buttons below to open directly.'
+      msg_sent_sub: 'If your mail app did not open automatically, click the webmail buttons below to open directly.',
+      cosmic_badge: '🛸 [DEEP SPACE BEACON // FREQ: 1005-1201]',
+      cosmic_title: 'Galactic Civilization Development Corps',
+      cosmic_sub: 'Transmission from Deep Space • Secret Frequency',
+      cosmic_wish_placeholder: 'Enter your wish to transmit into the cosmos...',
+      cosmic_btn_transmit: 'Transmit Wish',
+      cosmic_btn_close: 'Close Transmission'
     }
   };
 
@@ -263,7 +275,16 @@
     secretLoreBackdrop: document.getElementById('secretLoreBackdrop'),
     btnCloseSecretLore: document.getElementById('btnCloseSecretLore'),
     btnOpenSecretLore: document.getElementById('btnOpenSecretLore'),
-    btnFooterSecretLore: document.getElementById('btnFooterSecretLore')
+    btnFooterSecretLore: document.getElementById('btnFooterSecretLore'),
+
+    // Cosmic Easter Egg Modal (13 Clicks on i'm cho)
+    cosmicModal: document.getElementById('cosmicModal'),
+    cosmicBackdrop: document.getElementById('cosmicBackdrop'),
+    btnCloseCosmic: document.getElementById('btnCloseCosmic'),
+    btnFooterCloseCosmic: document.getElementById('btnFooterCloseCosmic'),
+    cosmicWishInput: document.getElementById('cosmicWishInput'),
+    btnTransmitWish: document.getElementById('btnTransmitWish'),
+    cosmicWishEcho: document.getElementById('cosmicWishEcho')
   };
 
   state.audio = el.audio;
@@ -336,6 +357,19 @@
     const enSec = document.getElementById('secretLoreContentEn');
     if (koSec) koSec.style.display = isEn ? 'none' : 'block';
     if (enSec) enSec.style.display = isEn ? 'block' : 'none';
+
+    // Toggle Cosmic Easter Egg Language (은하문명개발단)
+    const cosmicKo = document.getElementById('cosmicContentKo');
+    const cosmicEn = document.getElementById('cosmicContentEn');
+    if (cosmicKo) cosmicKo.style.display = isEn ? 'none' : 'block';
+    if (cosmicEn) cosmicEn.style.display = isEn ? 'block' : 'none';
+
+    document.querySelectorAll('[data-i18n-ph]').forEach(elem => {
+      const key = elem.getAttribute('data-i18n-ph');
+      if (t[key]) {
+        elem.placeholder = t[key];
+      }
+    });
 
     updateSpotlightDisplay();
     renderTrackThumbStrip();
@@ -617,6 +651,51 @@
     }
   }
 
+  // Cosmic Easter Egg Modal (13 Clicks on i'm cho)
+  function openCosmicModal() {
+    if (el.cosmicModal) {
+      el.cosmicModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (el.cosmicWishInput) {
+        setTimeout(() => el.cosmicWishInput.focus(), 300);
+      }
+    }
+  }
+
+  function closeCosmicModal() {
+    if (el.cosmicModal) {
+      el.cosmicModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function transmitCosmicWish() {
+    if (!el.cosmicWishInput || !el.cosmicWishEcho) return;
+    const wish = el.cosmicWishInput.value.trim();
+    if (!wish) {
+      el.cosmicWishInput.focus();
+      return;
+    }
+
+    try {
+      localStorage.setItem('cosmic_wish_10051201b', wish);
+    } catch (err) {}
+
+    const isEn = state.currentLang === 'en';
+    const echoMsg = isEn 
+      ? `✨ <strong>[TRANSMISSION COMPLETE]</strong> Your wish <em>"${wish}"</em> has been encoded into the Galactic Beacon Network.<br>"Ponder deeply. The stars are watching over your path."`
+      : `✨ <strong>[은하 네트워크 전송 완료]</strong> 당신의 소원 <em>"${wish}"</em>이(가) 기록되었습니다.<br>"생각을 깊게 하세요. 규율에 어긋나지 않는다면 별들이 당신의 앞길을 지켜볼 것입니다."`;
+
+    el.cosmicWishEcho.innerHTML = echoMsg;
+    el.cosmicWishEcho.style.display = 'block';
+    el.cosmicWishInput.value = '';
+    if (el.btnTransmitWish) {
+      el.btnTransmitWish.disabled = true;
+      el.btnTransmitWish.style.opacity = '0.6';
+      el.btnTransmitWish.textContent = isEn ? 'Transmitted' : '전송 완료';
+    }
+  }
+
   function handleContactSubmit(e) {
     e.preventDefault();
     const name = el.contactName.value.trim();
@@ -857,42 +936,47 @@
       el.spotCover.addEventListener('click', togglePlay);
     }
 
-    // Secret Lore Modal Event Listeners (Hidden Easter Egg on 'i\'m cho' - 3 Clicks Required)
+    // Secret Lore & Cosmic Easter Egg on 'i\'m cho'
+    // 3 Clicks -> Studio Log / Confidential Archive
+    // 13 Clicks -> Galactic Civilization Development Corps (은하문명개발단)
     if (el.brandSub) {
       let secretClickCount = 0;
-      let secretClickTimer = null;
+      let secretTimer = null;
+      let threeClickTimer = null;
 
-      el.brandSub.addEventListener('click', (e) => {
-        e.preventDefault();
+      function handleSecretTrigger(e) {
+        if (e) e.preventDefault();
         secretClickCount++;
-        clearTimeout(secretClickTimer);
+        clearTimeout(secretTimer);
+        clearTimeout(threeClickTimer);
 
-        if (secretClickCount >= 3) {
+        if (secretClickCount >= 13) {
           secretClickCount = 0;
-          openSecretLoreModal();
-        } else {
-          secretClickTimer = setTimeout(() => {
-            secretClickCount = 0;
-          }, 1500);
+          closeSecretLoreModal();
+          openCosmicModal();
+          return;
         }
-      });
 
-      let secretKeyCount = 0;
-      let secretKeyTimer = null;
+        if (secretClickCount === 3) {
+          // If clicks pause at 3, open Studio Log (3-click Easter Egg).
+          // If clicks continue rapidly toward 13, don't interrupt!
+          threeClickTimer = setTimeout(() => {
+            if (secretClickCount < 13 && secretClickCount >= 3) {
+              secretClickCount = 0;
+              openSecretLoreModal();
+            }
+          }, 450);
+        }
+
+        secretTimer = setTimeout(() => {
+          secretClickCount = 0;
+        }, 3000);
+      }
+
+      el.brandSub.addEventListener('click', handleSecretTrigger);
       el.brandSub.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          secretKeyCount++;
-          clearTimeout(secretKeyTimer);
-
-          if (secretKeyCount >= 3) {
-            secretKeyCount = 0;
-            openSecretLoreModal();
-          } else {
-            secretKeyTimer = setTimeout(() => {
-              secretKeyCount = 0;
-            }, 1500);
-          }
+          handleSecretTrigger(e);
         }
       });
     }
@@ -901,6 +985,20 @@
     if (el.btnCloseSecretLore) el.btnCloseSecretLore.addEventListener('click', closeSecretLoreModal);
     if (el.secretLoreBackdrop) el.secretLoreBackdrop.addEventListener('click', closeSecretLoreModal);
 
+    // Cosmic Modal Event Listeners (13 Clicks)
+    if (el.btnCloseCosmic) el.btnCloseCosmic.addEventListener('click', closeCosmicModal);
+    if (el.btnFooterCloseCosmic) el.btnFooterCloseCosmic.addEventListener('click', closeCosmicModal);
+    if (el.cosmicBackdrop) el.cosmicBackdrop.addEventListener('click', closeCosmicModal);
+    if (el.btnTransmitWish) el.btnTransmitWish.addEventListener('click', transmitCosmicWish);
+    if (el.cosmicWishInput) {
+      el.cosmicWishInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          transmitCosmicWish();
+        }
+      });
+    }
+
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -908,6 +1006,7 @@
         closeLightbox();
         closeContactModal();
         closeSecretLoreModal();
+        closeCosmicModal();
       }
       if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
         e.preventDefault();
