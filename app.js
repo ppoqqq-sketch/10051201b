@@ -49,14 +49,22 @@
       showcase_badge: 'FEATURED TRACK',
       showcase_title: '한 곡씩 집중 감상하기',
       showcase_sub: 'Track by Track Spotlight Player',
-      tab_all: '전체 1~7집 (96곡)',
-      tab_a1: '1집 : 빛이 나는 시간 (21)',
-      tab_a2: '2집 : 여백 (13)',
-      tab_a3: '3집 : 다른 하늘 (2)',
-      tab_a4: '4집 : 휴식의 멜로디 (12)',
-      tab_a5: '5집 : 우리의 시간 (19)',
-      tab_a6: '6집 : 자라나는 마음 (19)',
-      tab_a7: '7집 : 구름보다 먼저 (클래식 10)',
+      tab_all: '전체 1~7집 전집',
+      tab_a1: '1집 : 빛이 나는 시간',
+      tab_a2: '2집 : 여백',
+      tab_a3: '3집 : 다른 하늘, 같은 바람',
+      tab_a4: '4집 : 휴식의 멜로디',
+      tab_a5: '5집 : 우리의 시간은 끝나지 않았다',
+      tab_a6: '6집 : 받은 고통만큼 자라나는 마음',
+      tab_a7: '7집 : 구름보다 먼저 가는 바람 (클래식)',
+      quick_all: '전체 (96)',
+      quick_a1: '1집 (21)',
+      quick_a2: '2집 (13)',
+      quick_a3: '3집 (2)',
+      quick_a4: '4집 (12)',
+      quick_a5: '5집 (19)',
+      quick_a6: '6집 (19)',
+      quick_a7: '7집 (10)',
       strip_label: '전곡 넘겨보기 (클릭 시 바로 이동)',
       lyrics_excerpt: '가사 발췌',
       btn_full_lyrics: '전체 가사 보기 →',
@@ -127,14 +135,22 @@
       showcase_badge: 'FEATURED TRACK',
       showcase_title: 'Track by Track Showcase',
       showcase_sub: 'Focused spotlight listening experience',
-      tab_all: 'All 1~7 Albums (96 Tracks)',
-      tab_a1: '1st : Shining Moment (21)',
-      tab_a2: '2nd : The Blank Space (13)',
-      tab_a3: '3rd : Same Wind (2)',
-      tab_a4: '4th : Melody of Rest (12)',
-      tab_a5: '5th : Our Time (19)',
-      tab_a6: '6th : Growing Through Storm (19)',
-      tab_a7: '7th : Wind Ahead (Classical 10)',
+      tab_all: 'All Albums 1~7',
+      tab_a1: '1st : Shining Moment',
+      tab_a2: '2nd : The Blank Space (Margin)',
+      tab_a3: '3rd : Different Sky, Same Wind',
+      tab_a4: '4th : Melody of Rest',
+      tab_a5: '5th : Our Time Has Not Ended',
+      tab_a6: '6th : Growing Through the Storm',
+      tab_a7: '7th : Wind Ahead of the Clouds (Classical)',
+      quick_all: 'All (96)',
+      quick_a1: 'Vol.1 (21)',
+      quick_a2: 'Vol.2 (13)',
+      quick_a3: 'Vol.3 (2)',
+      quick_a4: 'Vol.4 (12)',
+      quick_a5: 'Vol.5 (19)',
+      quick_a6: 'Vol.6 (19)',
+      quick_a7: 'Vol.7 (10)',
       strip_label: 'Browse Tracks (Click to jump)',
       lyrics_excerpt: 'Lyrics Excerpt',
       btn_full_lyrics: 'View Full Lyrics →',
@@ -197,6 +213,7 @@
     heroTitle: document.getElementById('heroTitle'),
     heroDesc: document.getElementById('heroDesc'),
     tabBtns: document.querySelectorAll('.tab-btn'),
+    quickAlbumBtns: document.querySelectorAll('.quick-album-btn'),
 
     // Spotlight Elements
     spotlightCard: document.getElementById('spotlightCard'),
@@ -527,6 +544,11 @@
     updateSpotlightDisplay();
     updateMediaSessionMetadata(track);
 
+    // Sync active album glow in both 1번사진 and 2번째 사진
+    if (track.album_id) {
+      updateActiveAlbumUI(track.album_id);
+    }
+
     if (autoplay) {
       el.audio.play().then(() => {
         setPlayingState(true);
@@ -592,6 +614,21 @@
     selectTrack(prevIdx, true);
   }
 
+  // Sync Active Album Glow in both 1번사진 (quick-album-btn) and 2번째 사진 (tab-btn)
+  function updateActiveAlbumUI(albumKey) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-tab') === albumKey);
+    });
+    document.querySelectorAll('.quick-album-btn').forEach(b => {
+      const btnTab = b.getAttribute('data-tab');
+      if (state.activeTab === 'all') {
+        b.classList.toggle('active', btnTab === 'all' || btnTab === albumKey);
+      } else {
+        b.classList.toggle('active', btnTab === albumKey);
+      }
+    });
+  }
+
   // Filter Tabs
   function applyTabFilter(tabKey) {
     state.activeTab = tabKey;
@@ -601,14 +638,17 @@
       state.currentFilteredList = state.allTracks.filter(t => t.album_id === tabKey);
     }
 
+    updateActiveAlbumUI(tabKey);
     renderTrackThumbStrip();
 
-    // Select first track of that album
+    // Select first track of that album and immediately start playback ("재생키랑 연동")
     if (state.currentFilteredList.length > 0) {
       const targetIdx = state.allTracks.findIndex(t => t.id === state.currentFilteredList[0].id);
       if (targetIdx >= 0) {
         selectTrack(targetIdx, true);
       }
+    } else {
+      updateActiveAlbumUI(tabKey);
     }
   }
 
@@ -898,11 +938,16 @@
       el.btnMute.style.opacity = el.audio.muted ? '0.4' : '1';
     });
 
-    // Album Tabs Filter
-    el.tabBtns.forEach(btn => {
+    // Album Tabs Filter (2번째 사진 영역)
+    document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        el.tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        applyTabFilter(btn.getAttribute('data-tab'));
+      });
+    });
+
+    // Quick Album Play Bar (1번 사진 왼쪽 영역)
+    document.querySelectorAll('.quick-album-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
         applyTabFilter(btn.getAttribute('data-tab'));
       });
     });

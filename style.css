@@ -328,6 +328,51 @@ body {
   display: block;
 }
 
+/* Quick Album Play Bar (1번 사진 영역: 1집 (곡수) ~ 7집 재생키 연동) */
+.quick-album-bar {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.quick-album-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #D1D5DB;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+.quick-album-btn .q-icon {
+  font-size: 9px;
+  color: var(--accent-gold);
+  opacity: 0.8;
+  transform: translateY(-0.5px);
+}
+.quick-album-btn:hover {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+.quick-album-btn.active {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.28), rgba(245, 158, 11, 0.12));
+  color: var(--accent-gold);
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+.quick-album-btn.active .q-icon {
+  opacity: 1;
+}
+
 .album-tabs {
   display: flex;
   gap: 6px;
@@ -1492,7 +1537,8 @@ body {
   .site-header { flex-direction: column; gap: 14px; align-items: flex-start; }
   .header-nav { width: 100%; justify-content: space-between; }
   .hero-title { font-size: 26px; }
-  .album-tabs { width: 100%; overflow-x: auto; }
+  .album-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
+  .quick-album-bar { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
   
   .spotlight-card { padding: 20px 14px; }
   .spot-title-kr { font-size: 22px; }

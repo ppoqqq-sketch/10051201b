@@ -17,7 +17,7 @@
   <meta property="og:title" content="10051201b - i'm cho | Official Archive">
   <meta property="og:description" content="빛이 나는 시간 · 여백 · 다른 하늘 같은 바람 · 휴식의 멜로디 · 우리의 시간은 끝나지 않았다 · 받은 고통만큼 자라나는 마음 · 구름보다 먼저 가는 바람 — 96편의 음악과 감성 사진 작품">
   <meta property="og:image" content="media/photos/photo_02_sunset_church.jpg">
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=17">
   <style>
     /* Bulletproof Modal Fallback Rules */
     .lyrics-modal .lyrics-backdrop {
@@ -125,18 +125,46 @@
           <div class="section-badge" data-i18n="showcase_badge">FEATURED TRACK</div>
           <h3 class="section-title" data-i18n="showcase_title">한 곡씩 집중 감상하기</h3>
           <span class="section-subtitle" data-i18n="showcase_sub">Track by Track Spotlight Player</span>
+
+          <!-- Quick Album Bar (1번 사진 왼쪽 영역: 1집 (곡수) ~ 7집 (곡수) 재생키 연동) -->
+          <div class="quick-album-bar" id="quickAlbumBar">
+            <button class="quick-album-btn active" data-tab="all" title="1~7집 전체 재생">
+              <span class="q-icon">▶</span> <span class="q-label" data-i18n="quick_all">전체 (96)</span>
+            </button>
+            <button class="quick-album-btn" data-tab="album1" title="1집 재생">
+              <span class="q-icon">▶</span> <span class="q-label" data-i18n="quick_a1">1집 (21)</span>
+            </button>
+            <button class="quick-album-btn" data-tab="album2" title="2집 재생">
+              <span class="q-icon">▶</span> <span class="q-label" data-i18n="quick_a2">2집 (13)</span>
+            </button>
+            <button class="quick-album-btn" data-tab="album3" title="3집 재생">
+              <span class="q-icon">▶</span> <span class="q-label" data-i18n="quick_a3">3집 (2)</span>
+            </button>
+            <button class="quick-album-btn" data-tab="album4" title="4집 재생">
+              <span class="q-icon">▶</span> <span class="q-label" data-i18n="quick_a4">4집 (12)</span>
+            </button>
+            <button class="quick-album-btn" data-tab="album5" title="5집 재생">
+              <span class="q-icon">▶</span> <span class="q-label" data-i18n="quick_a5">5집 (19)</span>
+            </button>
+            <button class="quick-album-btn" data-tab="album6" title="6집 재생">
+              <span class="q-icon">▶</span> <span class="q-label" data-i18n="quick_a6">6집 (19)</span>
+            </button>
+            <button class="quick-album-btn" data-tab="album7" title="7집 재생">
+              <span class="q-icon">▶</span> <span class="q-label" data-i18n="quick_a7">7집 (10)</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Album Selector Tabs -->
-        <div class="album-tabs">
-          <button class="tab-btn active" data-tab="all" data-i18n="tab_all">전체 1~7집 (96곡)</button>
-          <button class="tab-btn" data-tab="album1" data-i18n="tab_a1">1집 : 빛이 나는 시간 (21)</button>
-          <button class="tab-btn" data-tab="album2" data-i18n="tab_a2">2집 : 여백 (13)</button>
-          <button class="tab-btn" data-tab="album3" data-i18n="tab_a3">3집 : 다른 하늘 (2)</button>
-          <button class="tab-btn" data-tab="album4" data-i18n="tab_a4">4집 : 휴식의 멜로디 (12)</button>
-          <button class="tab-btn" data-tab="album5" data-i18n="tab_a5">5집 : 우리의 시간 (19)</button>
-          <button class="tab-btn" data-tab="album6" data-i18n="tab_a6">6집 : 자라나는 마음 (19)</button>
-          <button class="tab-btn" data-tab="album7" data-i18n="tab_a7">7집 : 구름보다 먼저 (클래식 10)</button>
+        <!-- Album Selector Tabs (2번째 사진 영역: 1집 : 빛이 나는 시간 ~ 7집 타이틀 전집) -->
+        <div class="album-tabs" id="albumTabs">
+          <button class="tab-btn active" data-tab="all" data-i18n="tab_all">전체 1~7집 전집</button>
+          <button class="tab-btn" data-tab="album1" data-i18n="tab_a1">1집 : 빛이 나는 시간</button>
+          <button class="tab-btn" data-tab="album2" data-i18n="tab_a2">2집 : 여백</button>
+          <button class="tab-btn" data-tab="album3" data-i18n="tab_a3">3집 : 다른 하늘, 같은 바람</button>
+          <button class="tab-btn" data-tab="album4" data-i18n="tab_a4">4집 : 휴식의 멜로디</button>
+          <button class="tab-btn" data-tab="album5" data-i18n="tab_a5">5집 : 우리의 시간은 끝나지 않았다</button>
+          <button class="tab-btn" data-tab="album6" data-i18n="tab_a6">6집 : 받은 고통만큼 자라나는 마음</button>
+          <button class="tab-btn" data-tab="album7" data-i18n="tab_a7">7집 : 구름보다 먼저 가는 바람 (클래식)</button>
         </div>
       </div>
 
@@ -867,6 +895,6 @@
   <!-- Hidden native Audio element -->
   <audio id="audioElement" preload="metadata"></audio>
 
-  <script src="app.js?v=16"></script>
+  <script src="app.js?v=17"></script>
 </body>
 </html>
