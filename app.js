@@ -2,7 +2,7 @@
    10051201b - Official Music & Photography Archive Controller
    - Single-Track Spotlight Showcase (하나씩 집중 감상)
    - Fine Art Photography Gallery & Lightbox
-   - 60s Preview Mode & Download Protection
+   - Full Track Streaming Mode & Download Protection
    - Bilingual i18n Engine (KO / EN)
    - Privacy-Safe Contact Dispatch
    ========================================================================== */
@@ -10,7 +10,6 @@
 (function () {
   'use strict';
 
-  const PREVIEW_LIMIT = 60; // 60 seconds preview
   const SECURE_EMAIL_B64 = 'bGljZW5zZTAwMTlAZ21haWwuY29t'; // license0019@gmail.com
 
   // State Management
@@ -44,8 +43,9 @@
       hero_desc: '1년 6개월 동안 축적된 삶의 고뇌와 시(詩) 같은 언어들이 선율을 입었습니다.<br>곡 하나하나에 담긴 온기를 한 곡씩 집중해서 감상해 보세요.',
       metric_albums: '정규 앨범',
       metric_tracks: '오리지널 트랙',
-      metric_preview: '하나씩 듣는 미리듣기',
+      metric_preview: '전곡 무료 스트리밍 (완곡 감상)',
       metric_streaming: 'Spotify & YouTube 정식 발매',
+      tag_full: '전곡 완곡 감상',
       showcase_badge: 'FEATURED TRACK',
       showcase_title: '한 곡씩 집중 감상하기',
       showcase_sub: 'Track by Track Spotlight Player',
@@ -130,8 +130,9 @@
       hero_desc: 'One and a half years of quiet reflection and poetic contemplation transformed into soothing melodies.<br>Explore each track one by one with heartfelt warmth.',
       metric_albums: 'Studio Albums',
       metric_tracks: 'Original Tracks',
-      metric_preview: 'Track by Track Previews',
+      metric_preview: 'Full Track Free Streaming',
       metric_streaming: 'Spotify & YouTube Releases',
+      tag_full: 'Full Track',
       showcase_badge: 'FEATURED TRACK',
       showcase_title: 'Track by Track Showcase',
       showcase_sub: 'Focused spotlight listening experience',
@@ -229,6 +230,7 @@
     spotTitleKr: document.getElementById('spotTitleKr'),
     spotTitleEn: document.getElementById('spotTitleEn'),
     spotCurrentTime: document.getElementById('spotCurrentTime'),
+    spotTotalDuration: document.getElementById('spotTotalDuration'),
     spotProgressBar: document.getElementById('spotProgressBar'),
     spotProgressFill: document.getElementById('spotProgressFill'),
     spotLyricsPreview: document.getElementById('spotLyricsPreview'),
@@ -540,6 +542,12 @@
     el.audio.src = track.audio_url;
     el.audio.currentTime = 0;
     state.currentLyricsTrack = track;
+
+    if (el.currentTime) el.currentTime.textContent = '0:00';
+    if (el.spotCurrentTime) el.spotCurrentTime.textContent = '0:00';
+    if (el.progressBarFill) el.progressBarFill.style.width = '0%';
+    if (el.progressThumb) el.progressThumb.style.left = '0%';
+    if (el.spotProgressFill) el.spotProgressFill.style.width = '0%';
 
     updateSpotlightDisplay();
     updateMediaSessionMetadata(track);
@@ -868,28 +876,38 @@
       }
     });
 
-    // 60-second Preview enforcement & Timeupdate (모달 팝업 없이 부드러운 다음 곡 전환)
+    // Full Track Playback & Timeupdate (완곡 무료 스트리밍 & 부드러운 다음 곡 자동 전환)
     el.audio.addEventListener('timeupdate', () => {
       const cur = el.audio.currentTime;
+      const dur = el.audio.duration;
 
-      if (cur >= PREVIEW_LIMIT) {
-        if (state.repeatMode === 'one') {
-          el.audio.currentTime = 0;
-          el.audio.play();
-        } else {
-          playNext();
+      const formattedCur = formatTime(cur);
+      el.currentTime.textContent = formattedCur;
+      el.spotCurrentTime.textContent = formattedCur;
+
+      if (dur && !isNaN(dur) && dur > 0) {
+        const formattedDur = formatTime(dur);
+        if (el.totalDuration && el.totalDuration.textContent !== formattedDur) {
+          el.totalDuration.textContent = formattedDur;
         }
-        return;
+        if (el.spotTotalDuration && el.spotTotalDuration.textContent !== formattedDur) {
+          el.spotTotalDuration.textContent = formattedDur;
+        }
+
+        const pct = Math.min(100, Math.max(0, (cur / dur) * 100));
+        el.progressBarFill.style.width = `${pct}%`;
+        el.progressThumb.style.left = `${pct}%`;
+        el.spotProgressFill.style.width = `${pct}%`;
       }
+    });
 
-      const formatted = formatTime(cur);
-      el.currentTime.textContent = formatted;
-      el.spotCurrentTime.textContent = formatted;
-
-      const pct = (cur / PREVIEW_LIMIT) * 100;
-      el.progressBarFill.style.width = `${pct}%`;
-      el.progressThumb.style.left = `${pct}%`;
-      el.spotProgressFill.style.width = `${pct}%`;
+    el.audio.addEventListener('loadedmetadata', () => {
+      const dur = el.audio.duration;
+      if (dur && !isNaN(dur) && dur > 0) {
+        const formattedDur = formatTime(dur);
+        if (el.totalDuration) el.totalDuration.textContent = formattedDur;
+        if (el.spotTotalDuration) el.spotTotalDuration.textContent = formattedDur;
+      }
     });
 
     el.audio.addEventListener('ended', () => {
@@ -906,7 +924,10 @@
       const rect = el.spotProgressBar.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       const pct = Math.max(0, Math.min(1, clickX / rect.width));
-      el.audio.currentTime = pct * PREVIEW_LIMIT;
+      const dur = el.audio.duration;
+      if (dur && !isNaN(dur) && dur > 0) {
+        el.audio.currentTime = pct * dur;
+      }
     }
     el.spotProgressBar.addEventListener('click', seekSpotlight);
 
@@ -916,7 +937,10 @@
       const rect = el.progressContainer.getBoundingClientRect();
       const clickX = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
       const pct = Math.max(0, Math.min(1, clickX / rect.width));
-      el.audio.currentTime = pct * PREVIEW_LIMIT;
+      const dur = el.audio.duration;
+      if (dur && !isNaN(dur) && dur > 0) {
+        el.audio.currentTime = pct * dur;
+      }
     }
     el.progressContainer.addEventListener('mousedown', (e) => {
       isDragging = true;

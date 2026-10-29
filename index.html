@@ -17,7 +17,7 @@
   <meta property="og:title" content="10051201b - i'm cho | Official Archive">
   <meta property="og:description" content="빛이 나는 시간 · 여백 · 다른 하늘 같은 바람 · 휴식의 멜로디 · 우리의 시간은 끝나지 않았다 · 받은 고통만큼 자라나는 마음 · 구름보다 먼저 가는 바람 — 96편의 음악과 감성 사진 작품">
   <meta property="og:image" content="media/photos/photo_02_sunset_church.jpg">
-  <link rel="stylesheet" href="style.css?v=19">
+  <link rel="stylesheet" href="style.css?v=20">
   <style>
     /* Bulletproof Modal Fallback Rules */
     .lyrics-modal .lyrics-backdrop {
@@ -107,8 +107,8 @@
         </div>
         <div class="metric-div"></div>
         <div class="metric-item">
-          <span class="m-val">60s</span>
-          <span class="m-lbl" data-i18n="metric_preview">하나씩 듣는 미리듣기</span>
+          <span class="m-val">Full</span>
+          <span class="m-lbl" data-i18n="metric_preview">전곡 무료 스트리밍 (완곡 감상)</span>
         </div>
         <div class="metric-div"></div>
         <div class="metric-item">
@@ -190,7 +190,7 @@
             <div class="spot-meta-tags">
               <span id="spotAlbumTag" class="tag-album">1집: 빛이 나는 시간</span>
               <span id="spotGenreTag" class="tag-genre">Acoustic Folk</span>
-              <span class="tag-preview">60s Preview</span>
+              <span class="tag-preview" data-i18n="tag_full">전곡 완곡 감상</span>
             </div>
 
             <h3 id="spotTitleKr" class="spot-title-kr">곡 제목</h3>
@@ -198,7 +198,7 @@
 
             <!-- Scrubber on Card -->
             <div class="spot-scrubber-wrap">
-              <div class="spot-time"><span id="spotCurrentTime">0:00</span> / 1:00</div>
+              <div class="spot-time"><span id="spotCurrentTime">0:00</span> / <span id="spotTotalDuration">0:00</span></div>
               <div class="spot-progress-bar" id="spotProgressBar">
                 <div class="spot-progress-fill" id="spotProgressFill"></div>
               </div>
@@ -420,7 +420,7 @@
           <div id="playerTitle" class="player-title">재생할 곡을 선택하세요</div>
           <div id="playerSub" class="player-artist">10051201b-i'm cho</div>
         </div>
-        <span class="preview-mode-tag">60s Preview</span>
+        <span class="preview-mode-tag" data-i18n="tag_full">전곡 완곡 감상</span>
         <button id="btnOpenLyrics" class="btn-icon btn-lyrics-pill" title="가사 보기" data-i18n="btn_lyrics">
           가사
         </button>
@@ -446,7 +446,7 @@
           </button>
         </div>
         <div class="player-time">
-          <span id="currentTime">0:00</span> / <span id="totalDuration">1:00</span>
+          <span id="currentTime">0:00</span> / <span id="totalDuration">0:00</span>
         </div>
       </div>
 
@@ -895,6 +895,6 @@
   <!-- Hidden native Audio element -->
   <audio id="audioElement" preload="metadata"></audio>
 
-  <script src="app.js?v=19"></script>
+  <script src="app.js?v=20"></script>
 </body>
 </html>
